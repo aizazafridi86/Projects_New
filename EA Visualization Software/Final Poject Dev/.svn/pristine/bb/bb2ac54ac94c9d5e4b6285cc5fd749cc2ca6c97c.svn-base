@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EA_Visualization_Software.Common
+{
+    public class TestIInputFunction
+    {
+        MSScriptControl.ScriptControl sc = new MSScriptControl.ScriptControl();
+        //Random random = new Random();
+
+        public bool test_function(string input_function, List<string> uniqueGenes)
+        {
+            bool is_valid = true;
+            int numberOfGenes = uniqueGenes.Count();
+
+            string replacement = input_function;
+            double test_number = -2.5;
+
+            for (int i = 0; i < numberOfGenes; i++)
+            {
+                if (i == 0)
+                {
+                    input_function = replacement.Replace(uniqueGenes[i], test_number.ToString());
+                }
+                else
+                {
+                    input_function = input_function.Replace(uniqueGenes[i], test_number.ToString());
+                }
+            }
+
+            this.sc.Language = "VBScript";
+
+            try
+            {
+                object result = this.sc.Eval(input_function);
+                double fitness = Convert.ToDouble(result);
+            }
+            catch(System.Runtime.InteropServices.COMException)
+            {
+                is_valid = false;
+            }
+
+            return is_valid;
+          
+
+        }
+    }
+}

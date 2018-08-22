@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EA_Visualization_Software.PSO_Algorithm
+{
+    public class CalculateGBest
+    {
+        
+        public int bestParticle_index;
+
+        //method that returns the best particle in each time step (for minimization problem)
+        public int Return_gbest_Minimization(List<Particle> particle , int numberOfParticles)
+        {
+            //Initially assuming that particle[0] has the best fitness
+            this.bestParticle_index = 0;
+
+           //calculating fitness of particle[0] and storing it in bestParticle_fitness variable
+            double bestParticle_fitness = particle[bestParticle_index].CalculateFitness();
+
+            //iterating through the particles to find the index of the particle having the best fitness
+            for(int i=0; i<numberOfParticles; i++)
+            {
+                if(particle[i].CalculateFitness() < bestParticle_fitness)
+                {
+                    bestParticle_fitness = particle[i].CalculateFitness();
+                    bestParticle_index = i;
+                }
+            }
+
+            return bestParticle_index;
+        }
+    }
+}

@@ -1,0 +1,107 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+namespace EA_Visualization_Software.PSO_Algorithm
+{
+    public class CountGenes
+    {
+        
+        //public int numberOfGenes;
+        int index_sin=-1;
+        int index_cos=-1;
+        int index_tan=-1;
+        int index_e = -1;
+        int length =3;
+
+        public List<string> Return_NumberOfGenes(string inputFunction)
+        {
+            List<string> initialGenes = new List<string>();
+            List<string> uniqueGenesFound = new List<string>();
+            int numberOfGenes;
+
+            //testing stuff
+            string new_function = inputFunction;
+          
+            //getting indexes of mathematical functions
+            
+            //getting index of Sin function
+            if(new_function.Contains("Sin")) 
+            {
+                this.index_sin = new_function.IndexOf("Sin");
+            }
+            if(new_function.Contains("sin"))
+            {
+                this.index_sin = new_function.IndexOf("sin");
+            }
+            //removing Sin
+            if(this.index_sin != -1)
+            {
+                new_function = new_function.Remove(index_sin, this.length);
+            }
+
+            /*
+            //calculating index of 'e'
+            if (new_function.Contains("e"))
+            {
+                this.index_e = new_function.IndexOf("e");
+            }
+            //removing 'e'
+            if (this.index_e != -1)
+            {
+                new_function = new_function.Remove(index_e, 1);
+            }*/
+
+            //Now, calculating index of Cos
+            if(new_function.Contains("Cos"))
+            {
+                this.index_cos = new_function.IndexOf("Cos");
+            }
+            if(new_function.Contains("cos"))
+            {
+                this.index_cos = new_function.IndexOf("cos");
+            }
+            //removing Cos
+            if(this.index_cos != -1)
+            {
+                new_function = new_function.Remove(this.index_cos, this.length);
+            }
+
+            //Now calculating index of Tan
+            if(new_function.Contains("Tan"))
+            {
+                this.index_tan = new_function.IndexOf("Tan");
+            }
+            if (new_function.Contains("tan"))
+            {
+                this.index_tan = new_function.IndexOf("tan");
+            }
+            //removing tan
+            if(this.index_tan != -1)
+            {
+                new_function = new_function.Remove(index_tan, this.length);
+            }
+
+            //adding all variables to initial genes list
+            foreach (Match match in Regex.Matches(new_function, "[a-zA-Z]"))
+            {
+               initialGenes.Add(match.Value);
+            }
+
+            //adding only unique variables to genes list
+            for (int i = 0; i < initialGenes.Count; i++)
+            {
+                if (!uniqueGenesFound.Contains(initialGenes[i]))
+                {
+                    uniqueGenesFound.Add(initialGenes[i]);
+                }
+            }
+
+            numberOfGenes = uniqueGenesFound.Count;
+            return uniqueGenesFound;
+        }
+    }
+}

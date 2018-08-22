@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EA_Visualization_Software.PSO_Algorithm
+{
+    public class Inertia
+    {
+        double w0;
+        double wn;
+        double wt;
+
+        //method to initialize values for linear decreasing inertia velocity update rule
+        public void Initialize_LinearDecreasingInertia()
+        {
+            this.w0 = 0.9;
+            this.wn = 0.4;
+        }
+        //method that returns wt value for linear decreasing velocity update rule
+        public double Update_LinearDecreasingInertia(int numberOfTimeSteps, int currentTimeStep)
+        {
+            this.wt = this.wn + (this.w0 - this.wn) * ((numberOfTimeSteps - currentTimeStep) / numberOfTimeSteps);
+            return this.wt;
+        }
+
+        //method to initialize values for linear increasing inertial velocity update rule
+        public void Initialize_LinearIncreasingInertia()
+        {
+            this.w0 = 0.4;
+            this.wn = 0.9;
+        }
+
+        //method that returns wt value for linear increasing velocity update rule
+        public double Update_LinearIncreasingInertia(int numberOfTimeSteps, int currentTimeStep)
+        {
+            this.wt = this.wn + (this.w0 - this.wn) * ((numberOfTimeSteps - currentTimeStep) / numberOfTimeSteps);
+            return this.wt;
+        }
+    }
+}

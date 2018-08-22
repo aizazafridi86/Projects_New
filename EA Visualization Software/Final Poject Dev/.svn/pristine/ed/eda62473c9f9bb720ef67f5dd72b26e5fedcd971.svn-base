@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Diagnostics;
+
+namespace EA_Visualization_Software
+{
+    public partial class EAVisualization : Form
+    {
+        public EAVisualization()
+        {
+            InitializeComponent();
+            this.showLaunchPanel();
+        }
+
+        //Launching PS Panel for the user to enter values for Particle Swarm optimization Algorithm
+        private void LaunchPS_Click(object sender, EventArgs e)
+        {
+            //showing PS Panel
+            this.showPSPanel();
+
+        }
+
+
+        //Launching Particle Swarm Optimization Algorithm
+        private void runPSOButton_Click(object sender, EventArgs e)
+        {
+            //getting all user input values and storing them in local variables
+            string inputFunction = this.inputFunctionTextBox.Text.ToString();
+            int lowerRange = Convert.ToInt32(this.lowerRangeTextBox.Text);
+            int higherRange = Convert.ToInt32(this.higherRangeTextBox.Text);
+            string updateRule = this.updateRuleComboBox.Items[this.updateRuleComboBox.SelectedIndex].ToString();
+            int posClampVelocity = Convert.ToInt32(this.posClampVelocityTextBox.Text);
+            int negClampVelocity = Convert.ToInt32(this.negClampVelocityTextBox.Text);
+            int numberOfParticles = Convert.ToInt32(this.numberOfParticlesComboBox.Items[this.numberOfParticlesComboBox.SelectedIndex]);
+            int numberOfTimeSteps = Convert.ToInt32(this.numberOfTimeStepsComboBox.Items[this.numberOfTimeStepsComboBox.SelectedIndex]);
+            int numberOfRuns = Convert.ToInt32(this.numberOfRunsComboBox.Items[this.numberOfRunsComboBox.SelectedIndex]);
+
+            //printing values
+            System.Diagnostics.Debug.WriteLine(inputFunction);
+            System.Diagnostics.Debug.WriteLine(lowerRange);
+            System.Diagnostics.Debug.WriteLine(higherRange);
+            System.Diagnostics.Debug.WriteLine(updateRule);
+            System.Diagnostics.Debug.WriteLine(posClampVelocity);
+            System.Diagnostics.Debug.WriteLine(negClampVelocity);
+            System.Diagnostics.Debug.WriteLine(numberOfParticles);
+            System.Diagnostics.Debug.WriteLine(numberOfTimeSteps);
+            System.Diagnostics.Debug.WriteLine(numberOfRuns);
+        }
+
+        //managing panels
+        public void showPSPanel()
+        {
+            this.PSPanel.Show();
+            this.launchPanel.Hide();
+
+        }
+
+        public void showLaunchPanel()
+        {
+            this.launchPanel.Show();
+            this.PSPanel.Hide();
+        }
+
+    }
+}

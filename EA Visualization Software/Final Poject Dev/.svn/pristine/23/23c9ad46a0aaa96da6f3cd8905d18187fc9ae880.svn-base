@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EA_Visualization_Software.GA
+{
+    public class MatingSelection
+    {
+        //initialize list of offsprings that would store selected offsprings
+        List<Offspring> offspring;
+
+        //Initialize Random class for random number generation
+        Random random = new Random();
+
+        //method that receives list of individuals and offsprings and returns the selected offsrpings
+        public List<Offspring> tournament_selection(List<Individual> ind,List<Offspring>offspring,int offspring_size)
+        {
+
+
+            //return list of offsprings
+            return this.offspring; 
+        }
+    }
+}

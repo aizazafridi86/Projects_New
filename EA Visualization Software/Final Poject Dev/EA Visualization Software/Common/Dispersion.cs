@@ -1,0 +1,148 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using EA_Visualization_Software.PSO_Algorithm;
+using EA_Visualization_Software.GA;
+
+namespace EA_Visualization_Software.Common
+{
+    public class Dispersion
+    {
+        public int numberOfParticles;
+        public int numberOfGenes;
+        public double[,] mean;              //this multidimensional array would be used in population centroid calculations
+        public double[] meanArray;          //this array would be used to calculation population centroid
+        public double[] euclidean;
+        //int dimension;
+        //int particleNumber;
+        double meanDispersion;
+
+        //Constructor that initializes the variables to be used
+        /*
+        public Dispersion(int numberOfParticles, List<Particle> particle)
+        {
+            this.numberOfParticles = numberOfParticles;
+            this.numberOfGenes = particle[0].numberOfGenes;
+
+            this.mean = new double[this.numberOfGenes,this.numberOfParticles];
+            this.meanArray = new double[this.numberOfGenes];
+            this.euclidean = new double[this.numberOfParticles];
+
+        }*/
+
+        public void InitializeDispersion(int numberOfParticles, List<string> uniqueGenesFound)
+        {
+            this.numberOfParticles = numberOfParticles;
+            //this.numberOfGenes = particle[0].numberOfGenes;
+            this.numberOfGenes = uniqueGenesFound.Count;
+
+            this.mean = new double[this.numberOfGenes, this.numberOfParticles];
+            this.meanArray = new double[this.numberOfGenes];
+            this.euclidean = new double[this.numberOfParticles];
+        }
+
+        //method that calculates dispersion in case of particle swarm optimization method
+        public double calculateDispersion(List<Particle> particle)
+        {
+            
+            for (int dimension = 0; dimension < this.numberOfGenes; dimension++)
+            {
+                    for (int particleNumber = 0; particleNumber < this.numberOfParticles; particleNumber++)
+                    {
+                        this.mean[dimension,particleNumber] = particle[particleNumber].genes[dimension];
+                        this.meanArray[dimension] = this.meanArray[dimension] + this.mean[dimension,particleNumber];
+                    }
+            }
+
+            //mean array calculates mean in every dimension, it stores population centroid
+            for(int i=0; i<this.numberOfGenes ; i++)
+            {
+                this.meanArray[i] = this.meanArray[i] / this.numberOfParticles;
+            }
+
+            //calculating euclidean distance from population centroid
+            double term1 = 0;
+            for(int i=0; i<this.numberOfParticles; i++)
+            {
+                for(int j=0; j<this.numberOfGenes ; j++)
+                {
+                    term1 = this.meanArray[j] - particle[i].genes[j];
+                    term1 = Math.Pow(term1, 2);
+                    this.euclidean[i] = this.euclidean[i] + term1;
+                }
+
+                this.euclidean[i] = Math.Sqrt(this.euclidean[i]);
+            }
+
+            //calculating mean population dispersion by taking mean of euclidean distance
+            for(int i=0; i<this.numberOfParticles ; i++)
+            {
+                this.meanDispersion = 0;
+                this.meanDispersion = this.meanDispersion + this.euclidean[i];
+            }
+
+            this.meanDispersion = this.meanDispersion / this.numberOfParticles;
+
+            //returning mean dispersion of population
+            return this.meanDispersion;
+
+        }
+
+        //overloaded method that calculates dispersion in case of Genetic Algorithm
+        public double calculateDispersion(List<Individual> particle)
+        {
+
+            for (int dimension = 0; dimension < this.numberOfGenes; dimension++)
+            {
+                for (int particleNumber = 0; particleNumber < this.numberOfParticles; particleNumber++)
+                {
+                    this.mean[dimension, particleNumber] = particle[particleNumber].genes[dimension];
+                    this.meanArray[dimension] = this.meanArray[dimension] + this.mean[dimension, particleNumber];
+                }
+            }
+
+            //mean array calculates mean in every dimension, it stores population centroid
+            for (int i = 0; i < this.numberOfGenes; i++)
+            {
+                this.meanArray[i] = this.meanArray[i] / this.numberOfParticles;
+            }
+
+            //calculating euclidean distance from population centroid
+            double term1 = 0;
+            for (int i = 0; i < this.numberOfParticles; i++)
+            {
+                for (int j = 0; j < this.numberOfGenes; j++)
+                {
+                    term1 = this.meanArray[j] - particle[i].genes[j];
+                    term1 = Math.Pow(term1, 2);
+                    this.euclidean[i] = this.euclidean[i] + term1;
+                }
+
+                this.euclidean[i] = Math.Sqrt(this.euclidean[i]);
+            }
+
+            //calculating mean population dispersion by taking mean of euclidean distance
+            for (int i = 0; i < this.numberOfParticles; i++)
+            {
+                this.meanDispersion = 0;
+                this.meanDispersion = this.meanDispersion + this.euclidean[i];
+            }
+
+            this.meanDispersion = this.meanDispersion / this.numberOfParticles;
+
+            //returning mean dispersion of population
+            return this.meanDispersion;
+
+        }
+
+        public void clearAll()
+        {
+            Array.Clear(this.mean, 0, this.mean.Length);
+            Array.Clear(this.meanArray, 0, this.meanArray.Length);
+            Array.Clear(this.euclidean, 0, this.euclidean.Length);
+        }
+
+    }
+}

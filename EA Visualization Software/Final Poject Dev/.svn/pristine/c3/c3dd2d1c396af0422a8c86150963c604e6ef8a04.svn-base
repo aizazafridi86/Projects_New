@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+namespace EA_Visualization_Software.PSO_Algorithm
+{
+    public class Particle
+    {
+        public string inputFunction;
+        public int lowerRange;
+        public int higherRange;
+        public int posClampVelocity;
+        public int negClampVelocity;
+        public int numberOfTimeSteps;
+
+        public List<string> gene = new List<string>();
+        public List<string> initialGenes = new List<string>();
+        public int numberOfGenes;
+        public int velocity;
+
+
+        public Particle(string inputFunction,int lowerRange,int higherRange,int posClampVelocity,int negClampVelocity,int numberOfTimeSteps )
+        {
+            this.inputFunction = inputFunction;
+            this.lowerRange = lowerRange;
+            this.higherRange = higherRange;
+            this.posClampVelocity = posClampVelocity;
+            this.negClampVelocity = negClampVelocity;
+            this.numberOfTimeSteps = numberOfTimeSteps;
+ 
+            //string initialGenes;
+            foreach (Match match in Regex.Matches(this.inputFunction,"[a-zA-Z]"))
+            {
+                this.initialGenes.Add(match.Value);
+            }
+
+            for(int i=0; i<initialGenes.Count; i++)
+            {
+                if(!gene.Contains(initialGenes[i]))
+                {
+                    gene.Add(initialGenes[i]);
+                }
+            }
+          
+        }
+
+
+
+    }
+}

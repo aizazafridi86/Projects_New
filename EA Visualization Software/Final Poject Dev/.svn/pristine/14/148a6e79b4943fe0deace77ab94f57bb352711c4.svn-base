@@ -1,0 +1,128 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using EA_Visualization_Software.Common;
+
+namespace EA_Visualization_Software.GA
+{
+    public class GAController
+    {
+        //initializing global variables
+        public string input_function;
+        public int lower_range;
+        public int higher_range;
+        public int pop_size;
+        public string selection_method;
+        public int tournament_size;
+        public string recombination_type;
+        public int crossover_points;
+        public double crossover_rate;
+        public string mutation_type;
+        public double mutation_rate;
+        public int number_generations;
+        public int number_runs;
+        string survivor_selection_method;
+        int q;
+        int offspring_size;
+        string optimization_type;
+        double a;
+        double s;
+
+        public List<string> uniqueGenesFound = new List<string>();
+        public int number_genes;
+
+        //creating instance of output class
+        List<Output> output = new List<Output>();
+
+        //creating instance of dispersion class
+        Dispersion disp = new Dispersion();
+
+        //Creating an instance of Random number generator
+        Random random = new Random();
+
+        //creating instance of mating selection class
+        MatingSelection mating = new MatingSelection();
+
+        //creating instance of Recombination class
+        Recombination recomb = new Recombination();
+
+        //creating an instance of class mutation
+        Mutation mutation = new Mutation();
+
+        //creating instance of method that would be used to generate random numbers according to normal distribution
+        MathNet.Numerics.Distributions.Normal normalDist = new MathNet.Numerics.Distributions.Normal();
+        
+        //setting all global variables values
+        public void Initialize(string input_f,int l_range,int h_range,int pop_size,string sel_meth,int tour_size,string recom_type,int cross_p,double cross_rate,string mutation_type, double mutation_rate,List<string> uniqueGenesFound,int number_genes,int gen, int runs,string survivor_selection, int q,int off_size, double a, double s)
+        {
+            this.input_function = input_f;
+            this.lower_range = l_range;
+            this.higher_range = h_range;
+            this.pop_size = pop_size;
+            this.offspring_size = off_size;
+            this.selection_method = sel_meth;
+            this.tournament_size = tour_size;
+            this.recombination_type = recom_type;
+            this.crossover_points = cross_p;
+            this.crossover_rate = cross_rate;
+            this.mutation_type = mutation_type;
+            this.mutation_rate = mutation_rate;
+            this.uniqueGenesFound = uniqueGenesFound;
+            this.number_genes = number_genes;
+            this.number_generations = gen;
+            this.number_runs = runs;
+            this.survivor_selection_method = survivor_selection;
+            this.optimization_type = "minimization";
+            this.q = q;
+            this.a = a;
+            this.s = s;
+            
+
+        }
+
+        //method that runs GA Algorithm
+        public void RunGA()
+        {
+            //initializing list of individuals
+            List<Individual> ind = new List<Individual>();
+
+            //initializing list of offsprings
+            List<Offspring> offspring = new List<Offspring>();
+
+            //clear lists of individuals and offsrpings
+            ind.Clear();
+            offspring.Clear();
+
+            //initializing list of individuals
+            for(int i=0; i<this.pop_size; i++)
+            {
+                //initialize individuals here
+                ind.Add(new Individual(this.uniqueGenesFound, this.number_genes, this.higher_range, this.lower_range, this.input_function,this.random));
+            }
+
+            //initializing list of offspring
+            for (int i = 0; i < this.offspring_size; i++)
+            {
+                offspring.Add(new Offspring(this.uniqueGenesFound, this.input_function, this.number_genes));
+            }
+
+            //calling tournament selection
+           // this.mating.tournament_selection_minimization(ind, offspring, this.pop_size, this.offspring_size, this.tournament_size, this.number_genes, this.random);
+
+            //calling fitness proportionate selection method
+            //this.mating.fitness_proportionate(ind, offspring, this.pop_size, this.offspring_size, this.number_genes,this.optimization_type,this.random);
+
+            //calling calling rank selection
+            //this.mating.rank_selection_maximization(ind, offspring, this.pop_size, this.offspring_size, this.number_genes, this.random,0.25);
+
+            //this.recomb.onepoint_crossover(offspring, this.offspring_size, this.crossover_rate, this.number_genes, this.random);
+            //this.recomb.arithmetic_single_recombination(offspring, this.offspring_size, this.crossover_rate, 0.25, this.number_genes, this.random);
+            //this.mutation.gaussian_mutaion(offspring, this.offspring_size, this.mutation_rate, this.number_genes, this.random, this.normalDist);
+                //returning output class
+                //return this.output;               
+
+        }
+    }
+}

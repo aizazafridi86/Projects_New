@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EA_Visualization_Software.PSO_Algorithm
+{
+    public class Particle
+    {
+        string inputFunction;
+        int lowerRange;
+        int higherRange;
+        int posClampVelocity;
+        int negClampVelocity;
+        int numberOfTimeSteps;
+
+        public Particle(string inputFunction,int lowerRange,int higherRange,int posClampVelocity,int negClampVelocity,int numberOfTimeSteps )
+        {
+            this.inputFunction = inputFunction;
+            this.lowerRange = lowerRange;
+            this.higherRange = higherRange;
+            this.posClampVelocity = posClampVelocity;
+            this.negClampVelocity = negClampVelocity;
+            this.numberOfTimeSteps = numberOfTimeSteps; 
+        }
+
+    }
+}

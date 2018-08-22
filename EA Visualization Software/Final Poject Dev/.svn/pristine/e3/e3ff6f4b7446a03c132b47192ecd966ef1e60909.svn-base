@@ -1,0 +1,108 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EA_Visualization_Software.GA
+{
+    public class Recombination
+    {
+        public int crossover_point;
+        public double generated_number;
+
+        //method for one point crossover
+        //this method receives list of offsprings, perform crossover and return the list of offsprings
+        public List<Offspring> onepoint_crossover(List<Offspring> offspring, int offspring_size, double crossover_rate, int number_genes,Random random)
+        {
+            //generating a random crossover point
+            //this would generate random number between 1 inclusive and number_genes exclusive 
+            //this.crossover_point = random.Next(1, number_genes);
+
+            //generating a random double between 0 and 1
+            //exhanging genes after crossover point if the generated number is less than or equal to crossover_rate
+            for (int i=0; i<offspring_size; i=i+2)
+            {
+                this.generated_number = random.NextDouble();
+
+                //perform crossover if generated number is less than or equal to crossover rate
+                if (this.generated_number <= crossover_rate)
+                {
+                    //generating random crossover point
+                    this.crossover_point = random.Next(1, number_genes);
+
+                    //exchanging genes after crossover point
+                    for (int j = this.crossover_point; j < number_genes; j++)
+                    {
+                        offspring[i].genes[j] = offspring[i + 1].genes[j];
+                        offspring[i + 1].genes[j] = offspring[i].genes[j];
+                    }
+                }
+            }
+
+            //returning list of offsrpings 
+            //offspring list is modified using recombination
+            return offspring;
+        }
+
+        //method for simple arithmetic recombination
+        public List<Offspring> arithmetic_simple_recombination(List<Offspring> offspring, int offspring_size, double crossover_rate, double a, int number_genes, Random random)
+        {
+            //generating random crossover point
+            //this.crossover_point = random.Next(1, number_genes);
+
+            for (int i = 0; i < offspring_size; i = i + 2)
+            {
+                //perform crossover if generated number is less than or equal to crossover rate
+                this.generated_number = random.NextDouble();
+
+                if (this.generated_number <= crossover_rate)
+                {
+                    //generating random crossover point
+                    this.crossover_point = random.Next(1, number_genes);
+
+                    //performing crossover after crossover point
+                    for (int j = this.crossover_point; j < number_genes; j++)
+                    {
+                        offspring[i].genes[j] = a * offspring[i].genes[j] + (1 - a) * offspring[i + 1].genes[j];
+                        offspring[i + 1].genes[j] = a * offspring[i + 1].genes[j] + (1 - a) * offspring[i].genes[j];
+                    }
+                }
+            }
+
+            return offspring;
+        }
+
+        //method for single arithmetic recombination
+        public List<Offspring> arithmetic_single_recombination(List<Offspring> offspring, int offspring_size, double crossover_rate, double a, int number_genes, Random random)
+        {
+            double average; 
+
+            for(int i=0; i<offspring_size ; i=i+2)
+            {
+                //generating random double
+                this.generated_number = random.NextDouble();
+
+                //if generated number is less than or equal to crossover rate, then perform crossover
+                if (this.generated_number <= crossover_rate)
+                {
+                    //generating random crossover point
+                    this.crossover_point = random.Next(1, number_genes);
+
+                    //calculating average of parents genes values at crossover point
+                    average = a * offspring[i].genes[crossover_point] + (1 - a) * offspring[i + 1].genes[crossover_point];
+
+                    //offspring genes values at crossover point would be the average of their parents genes values
+                    offspring[i].genes[crossover_point] = average;
+                    offspring[i + 1].genes[crossover_point] = average;
+                } 
+            }
+
+            return offspring;
+        }
+
+
+
+
+    }
+}

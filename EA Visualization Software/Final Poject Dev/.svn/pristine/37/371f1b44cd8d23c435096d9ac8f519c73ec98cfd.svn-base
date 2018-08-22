@@ -1,0 +1,113 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using EA_Visualization_Software.Common;
+
+namespace EA_Visualization_Software.PSO_Algorithm
+{
+    public class PSController
+    {
+
+        //Initializing Variables
+        string inputFunction;
+        int lowerRange;
+        int higherRange;
+        string updateRule;
+        int posClampVelocity;
+        int negClampVelocity;
+        int numberOfParticles;
+        int numberOfTimeSteps;
+        int numberOfRuns;
+        string optimizationType;
+        int best_index;
+
+
+        //This method set values of all variables that are passed by the GUI
+        public void Initialize(string inputFunction,int lowerRange,int higherRange,string updateRule,int posClampVelocity,int negClampVelocity,int numberOfParticles,int numberOfTimeSteps,int numberOfRuns, string optimizationType)
+        {
+            this.inputFunction = inputFunction;
+            this.lowerRange = lowerRange;
+            this.higherRange = higherRange;
+            this.updateRule = updateRule;
+            this.posClampVelocity = posClampVelocity;
+            this.negClampVelocity = negClampVelocity;
+            this.numberOfParticles = numberOfParticles;
+            this.numberOfTimeSteps = numberOfTimeSteps;
+            this.numberOfRuns = numberOfRuns;
+            this.optimizationType = optimizationType;
+
+        }
+
+        //Running PS Algorithm
+        public Output RunPSAlgorithm()
+        {    
+            //Initializing list of particles
+            List<Particle> particle = new List<Particle>();
+
+            //creating instance of CalculateGBest class
+            CalculateGBest gbest = new CalculateGBest();
+
+            //creating isntance of Inertia class
+            Inertia inertia = new Inertia();
+
+            //creating particles and initializing their variables
+            for (int i = 0; i < this.numberOfParticles; i++)
+            {
+                particle.Add(new Particle(this.inputFunction, this.lowerRange, this.higherRange, this.posClampVelocity, this.negClampVelocity, this.numberOfTimeSteps));
+            } 
+
+                      
+             //Running algorithm
+
+             //Initializing linear decreasing inertia 
+             inertia.Initialize_LinearIncreasingInertia();
+           
+            //Creatung instance of output class
+            Output output = new Output();
+
+            //for timestep=0
+            //adding best particle fitness to output class bestFitness dictionary
+            this.best_index = gbest.Return_gbest_Minimization(particle,this.numberOfParticles);
+            output.Add_Best(0,particle[this.best_index].ReturnFitness());
+
+            //updating velocity and position of all particles in all dimensions
+            for(int i=0; i<this.numberOfParticles ; i++)
+            {
+                particle[i].Update_LinearDecreasingVelocity(particle[this.best_index],inertia.wt);
+                particle[i].Update_Position();
+            }
+
+            //for rest of timesteps
+            for (int i = 1; i < this.numberOfTimeSteps; i++)
+            {
+                //calculating best particle
+                this.best_index = gbest.Return_gbest_Minimization(particle, this.numberOfParticles);
+
+                //updating inertia
+                inertia.Update_LinearDecreasingInertia(this.numberOfTimeSteps, i);
+
+                for (int j = 0; j < this.numberOfParticles; j++)
+                {
+                    //every particle calculating its own personal best
+                    particle[j].Calculate_Pbest();
+
+                    //updating velocity
+                    particle[j].Update_LinearDecreasingVelocity(particle[this.best_index], inertia.wt);
+
+                    //updating position
+                    particle[j].Update_Position();
+                }
+
+                //adding best particle fitness to output class
+                output.Add_Best(i, particle[this.best_index].ReturnFitness());
+            }
+            
+            //returning instance of output class to the GUI
+            return output;
+            
+        }
+    }
+}

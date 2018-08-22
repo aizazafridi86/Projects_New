@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+namespace EA_Visualization_Software.PSO_Algorithm
+{
+    public class CountGenes
+    {
+        
+        //public int numberOfGenes;
+
+        public List<string> Return_NumberOfGenes(string inputFunction)
+        {
+            List<string> initialGenes = new List<string>();
+            List<string> uniqueGenesFound = new List<string>();
+            int numberOfGenes;
+
+            //adding all variables to initialGenes list
+            foreach (Match match in Regex.Matches(inputFunction, "[a-zA-Z]"))
+            {
+               initialGenes.Add(match.Value);
+            }
+
+            //adding only unique variables to genes list
+            for (int i = 0; i < initialGenes.Count; i++)
+            {
+                if (!uniqueGenesFound.Contains(initialGenes[i]))
+                {
+                    uniqueGenesFound.Add(initialGenes[i]);
+                }
+            }
+
+            numberOfGenes = uniqueGenesFound.Count;
+            return uniqueGenesFound;
+        }
+    }
+}

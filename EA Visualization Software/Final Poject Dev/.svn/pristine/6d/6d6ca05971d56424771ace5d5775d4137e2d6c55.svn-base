@@ -1,0 +1,142 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EA_Visualization_Software.GA
+{
+    public class MatingSelection
+    {
+        //initialize list of offsprings that would store selected offsprings
+        //List<Offspring> offspring;
+
+        //Initialize Random class for random number generation
+        //Random random = new Random();
+
+        //Tournament selection method for minimization problems
+        public List<Offspring> tournament_selection_minimization(List<Individual> ind,List<Offspring>offspring,int pop_size,int offspring_size, int tournament_size, int number_genes,Random random)
+        {
+            int numberOfGenes=number_genes;
+            List<int> selected_ind = new List<int>();
+            List<double> fitness_selected_ind=new List<double>();
+            List<double> uniqueRandomNumbers = new List<double>();
+            int final_selected_individual;
+            double min_fitness;
+            int random_number;
+   
+            //select parents for mating and put them in offspring population that would be later modified by recombination and mutation
+            for (int i = 0; i < offspring_size; i++)
+            {
+                //selecting individuals and calculating their fitness
+                for(int j=0;j<tournament_size;j++)
+                {
+                    //selected_ind[j]=random.Next(0,pop_size);
+                    random_number = random.Next(0, pop_size - 1);
+
+                    //making sure that same individual is not selected twice
+                    while (uniqueRandomNumbers.Contains(random_number))
+                    {
+                        random_number = random.Next(0, pop_size - 1);
+                    }
+
+                    //adding the value to unique random number list
+                    uniqueRandomNumbers.Add(random_number);
+
+                    //finally selecting the individual for tournament 
+                    selected_ind[j] = random_number;
+
+                    //calculating fitness of selected individual and storing it in a list
+                    fitness_selected_ind[j]= ind[selected_ind[j]].CalculateFitness();
+                }
+
+                //selecting individual having the best fitness and copying it to the offspring list
+                min_fitness=fitness_selected_ind[0];
+                final_selected_individual=0;
+
+                for(int j=1;j<tournament_size;j++)
+                {
+                    if(fitness_selected_ind[j]<min_fitness)
+                    {
+                        final_selected_individual=j;
+                    }
+                }
+
+                //finally, copying selected individual to offspring list
+                for(int j=0; j<numberOfGenes; j++)
+                {
+                    offspring[i].genes[j]=ind[final_selected_individual].genes[j];
+                }
+
+                //clearing the list that contains the unique random numbers for the next round of tournament
+                uniqueRandomNumbers.Clear();
+
+            }
+            //return list of offsprings
+            return offspring;
+        }
+
+        //Tournament selection method for maximization problems
+        public List<Offspring> tournament_selection_maximization(List<Individual> ind, List<Offspring> offspring, int pop_size, int offspring_size, int tournament_size, int number_genes,Random random)
+        {
+            int numberOfGenes = number_genes;
+            List<int> selected_ind = new List<int>();
+            List<double> fitness_selected_ind = new List<double>();
+            List<double> uniqueRandomNumbers = new List<double>();
+            int final_selected_individual;
+            double max_fitness;
+            int random_number;
+
+            //select parents for mating and put them in offspring population that would be later modified by recombination and mutation
+            for (int i = 0; i < offspring_size; i++)
+            {
+                //selecting individuals and calculating their fitness
+                for (int j = 0; j < tournament_size; j++)
+                {
+                    random_number = random.Next(0, pop_size - 1);
+
+                    //making sure that same individual is not selected twice
+                    while (uniqueRandomNumbers.Contains(random_number))
+                    {
+                        random_number = random.Next(0, pop_size - 1);
+                    }
+
+                    //adding the value to unique random number list
+                    uniqueRandomNumbers.Add(random_number);
+
+                    //finally selecting the individual for tournament 
+                    selected_ind[j] = random_number;
+
+                    //calculating fitness of selected individual and storing it in a list
+                    fitness_selected_ind[j] = ind[selected_ind[j]].CalculateFitness();
+                }
+
+                //selecting individual having the best fitness and copying it to the offspring list
+                max_fitness = fitness_selected_ind[0];
+                final_selected_individual = 0;
+
+                for (int j = 1; j < tournament_size; j++)
+                {
+                    if (fitness_selected_ind[j] > max_fitness)
+                    {
+                        final_selected_individual = j;
+                    }
+                }
+
+                //finally, copying selected individual to offspring list
+                for (int j = 0; j < numberOfGenes; j++)
+                {
+                    offspring[i].genes[j] = ind[final_selected_individual].genes[j];
+                }
+
+                //clearing the list that contains the unique random numbers for the next round of tournament
+                uniqueRandomNumbers.Clear();
+
+            }
+            //return list of offsprings
+            return offspring;
+        }
+
+
+    }
+}

@@ -1,0 +1,102 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Diagnostics;
+using EA_Visualization_Software.PSO_Algorithm;
+using EA_Visualization_Software.Common;
+
+namespace EA_Visualization_Software
+{
+    public partial class EAVisualization : Form
+    {
+        public EAVisualization()
+        {
+            InitializeComponent();
+            this.showLaunchPanel();
+        }
+
+        //Launching PS Panel for the user to enter values for Particle Swarm optimization Algorithm
+        private void LaunchPS_Click(object sender, EventArgs e)
+        {
+            //showing PS Panel
+            this.showPSPanel();
+        }
+
+
+        //Launching Particle Swarm Optimization Algorithm
+        private void runPSOButton_Click(object sender, EventArgs e)
+        {
+            //getting all user input values and storing them in local variables
+            string inputFunction = this.inputFunctionTextBox.Text.ToString();
+            int lowerRange = Convert.ToInt32(this.lowerRangeTextBox.Text);
+            int higherRange = Convert.ToInt32(this.higherRangeTextBox.Text);
+            string updateRule = this.updateRuleComboBox.Items[this.updateRuleComboBox.SelectedIndex].ToString();
+            int posClampVelocity = Convert.ToInt32(this.posClampVelocityTextBox.Text);
+            int negClampVelocity = Convert.ToInt32(this.negClampVelocityTextBox.Text);
+            int numberOfParticles = Convert.ToInt32(this.numberOfParticlesComboBox.Items[this.numberOfParticlesComboBox.SelectedIndex]);
+            int numberOfTimeSteps = Convert.ToInt32(this.numberOfTimeStepsComboBox.Items[this.numberOfTimeStepsComboBox.SelectedIndex]);
+            int numberOfRuns = Convert.ToInt32(this.numberOfRunsComboBox.Items[this.numberOfRunsComboBox.SelectedIndex]);
+            string optimizationType;
+            if(this.minimizeRadioButton.Checked)
+            {
+                optimizationType = this.minimizeRadioButton.Text.ToString();
+            }
+
+            else
+            {
+                optimizationType = this.maximizeRadioButton.Text.ToString();
+            }
+
+            //Creating Instance of PS Controller
+            PSController controller = new PSController();
+
+            //passing variable values to Controller
+            controller.Initialize(inputFunction, lowerRange, higherRange, updateRule, posClampVelocity, negClampVelocity, numberOfParticles, numberOfTimeSteps, numberOfRuns, optimizationType);
+
+            //Running PSO Algorithm
+            Output output = controller.RunPSAlgorithm();
+            //controller.RunPSAlgorithm();
+            //controller.RunPSAlgorithm();
+
+            
+            //showing output data
+            for(int i=1; i<numberOfTimeSteps ; i++)
+            {
+                OutputbestFitness.AppendText(i.ToString() + ".\t");
+                OutputbestFitness.AppendText(output.bestFitness[i].ToString());
+                OutputbestFitness.AppendText("\n");
+
+                outputAverageFitness.AppendText(i.ToString() + ".\t");
+                outputAverageFitness.AppendText(output.averageFitness[i].ToString());
+                outputAverageFitness.AppendText("\n");
+
+                outputDispersion.AppendText(i.ToString() + ".\t");
+                outputDispersion.AppendText(output.dispersion[i].ToString());
+                outputDispersion.AppendText("\n");
+            }
+
+        }
+
+        //managing panels
+        public void showPSPanel()
+        {
+            this.PSPanel.Show();
+            this.launchPanel.Hide();
+            this.outputPanel.Show();
+        }
+
+        public void showLaunchPanel()
+        {
+            this.launchPanel.Show();
+            this.PSPanel.Hide();
+            this.outputPanel.Hide();
+        }
+
+    }
+}

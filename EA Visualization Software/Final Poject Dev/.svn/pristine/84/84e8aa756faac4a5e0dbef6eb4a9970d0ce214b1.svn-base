@@ -1,0 +1,324 @@
+﻿namespace EA_Visualization_Software
+{
+    partial class maxVelocityTextBox
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.launchPanel = new System.Windows.Forms.Panel();
+            this.launchGA = new System.Windows.Forms.Button();
+            this.LaunchPS = new System.Windows.Forms.Button();
+            this.EASelectionLabel = new System.Windows.Forms.Label();
+            this.PSPanel = new System.Windows.Forms.Panel();
+            this.numberOfRunsComboBox = new System.Windows.Forms.ComboBox();
+            this.numberOfRunsLabel = new System.Windows.Forms.Label();
+            this.numberOfTimeStepsComboBox = new System.Windows.Forms.ComboBox();
+            this.numberOfTimeStepsLabel = new System.Windows.Forms.Label();
+            this.negClampVelocityTextBox = new System.Windows.Forms.TextBox();
+            this.posClampVelocityLabel = new System.Windows.Forms.Label();
+            this.posClampVelocityTextBox = new System.Windows.Forms.TextBox();
+            this.negClampVelocityLabel = new System.Windows.Forms.Label();
+            this.numberOfParticlesComboBox = new System.Windows.Forms.ComboBox();
+            this.numberOfParticlesLabel = new System.Windows.Forms.Label();
+            this.inputFunctionComboBox = new System.Windows.Forms.ComboBox();
+            this.orLabel = new System.Windows.Forms.Label();
+            this.inputFunctionTextBox = new System.Windows.Forms.TextBox();
+            this.inputFunction = new System.Windows.Forms.Label();
+            this.launchPanel.SuspendLayout();
+            this.PSPanel.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // launchPanel
+            // 
+            this.launchPanel.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.launchPanel.Controls.Add(this.launchGA);
+            this.launchPanel.Controls.Add(this.LaunchPS);
+            this.launchPanel.Controls.Add(this.EASelectionLabel);
+            this.launchPanel.Location = new System.Drawing.Point(400, 200);
+            this.launchPanel.Name = "launchPanel";
+            this.launchPanel.Size = new System.Drawing.Size(400, 200);
+            this.launchPanel.TabIndex = 0;
+            // 
+            // launchGA
+            // 
+            this.launchGA.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.launchGA.Location = new System.Drawing.Point(54, 132);
+            this.launchGA.Name = "launchGA";
+            this.launchGA.Size = new System.Drawing.Size(250, 30);
+            this.launchGA.TabIndex = 1;
+            this.launchGA.Text = "Genetic Algorithm";
+            this.launchGA.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.launchGA.UseVisualStyleBackColor = true;
+            // 
+            // LaunchPS
+            // 
+            this.LaunchPS.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LaunchPS.Location = new System.Drawing.Point(54, 88);
+            this.LaunchPS.Name = "LaunchPS";
+            this.LaunchPS.Size = new System.Drawing.Size(250, 30);
+            this.LaunchPS.TabIndex = 1;
+            this.LaunchPS.Text = "Particle Swarm Optimization Algorithm";
+            this.LaunchPS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LaunchPS.UseVisualStyleBackColor = true;
+            this.LaunchPS.Click += new System.EventHandler(this.LaunchPS_Click);
+            // 
+            // EASelectionLabel
+            // 
+            this.EASelectionLabel.AutoSize = true;
+            this.EASelectionLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EASelectionLabel.Location = new System.Drawing.Point(51, 26);
+            this.EASelectionLabel.Name = "EASelectionLabel";
+            this.EASelectionLabel.Size = new System.Drawing.Size(327, 18);
+            this.EASelectionLabel.TabIndex = 0;
+            this.EASelectionLabel.Text = "Please select one of the following options";
+            // 
+            // PSPanel
+            // 
+            this.PSPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PSPanel.Controls.Add(this.numberOfRunsComboBox);
+            this.PSPanel.Controls.Add(this.numberOfRunsLabel);
+            this.PSPanel.Controls.Add(this.numberOfTimeStepsComboBox);
+            this.PSPanel.Controls.Add(this.numberOfTimeStepsLabel);
+            this.PSPanel.Controls.Add(this.negClampVelocityTextBox);
+            this.PSPanel.Controls.Add(this.posClampVelocityLabel);
+            this.PSPanel.Controls.Add(this.posClampVelocityTextBox);
+            this.PSPanel.Controls.Add(this.negClampVelocityLabel);
+            this.PSPanel.Controls.Add(this.numberOfParticlesComboBox);
+            this.PSPanel.Controls.Add(this.numberOfParticlesLabel);
+            this.PSPanel.Controls.Add(this.inputFunctionComboBox);
+            this.PSPanel.Controls.Add(this.orLabel);
+            this.PSPanel.Controls.Add(this.inputFunctionTextBox);
+            this.PSPanel.Controls.Add(this.inputFunction);
+            this.PSPanel.Location = new System.Drawing.Point(13, 13);
+            this.PSPanel.Name = "PSPanel";
+            this.PSPanel.Size = new System.Drawing.Size(424, 575);
+            this.PSPanel.TabIndex = 1;
+            // 
+            // numberOfRunsComboBox
+            // 
+            this.numberOfRunsComboBox.FormattingEnabled = true;
+            this.numberOfRunsComboBox.Items.AddRange(new object[] {
+            "1",
+            "5",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "25",
+            "30",
+            "50"});
+            this.numberOfRunsComboBox.Location = new System.Drawing.Point(150, 277);
+            this.numberOfRunsComboBox.Name = "numberOfRunsComboBox";
+            this.numberOfRunsComboBox.Size = new System.Drawing.Size(121, 21);
+            this.numberOfRunsComboBox.TabIndex = 13;
+            // 
+            // numberOfRunsLabel
+            // 
+            this.numberOfRunsLabel.AutoSize = true;
+            this.numberOfRunsLabel.Location = new System.Drawing.Point(7, 284);
+            this.numberOfRunsLabel.Name = "numberOfRunsLabel";
+            this.numberOfRunsLabel.Size = new System.Drawing.Size(42, 13);
+            this.numberOfRunsLabel.TabIndex = 12;
+            this.numberOfRunsLabel.Text = "# Runs";
+            // 
+            // numberOfTimeStepsComboBox
+            // 
+            this.numberOfTimeStepsComboBox.FormattingEnabled = true;
+            this.numberOfTimeStepsComboBox.Items.AddRange(new object[] {
+            "100",
+            "200",
+            "500",
+            "1000",
+            "1500",
+            "2000",
+            "2500",
+            "3000",
+            "3500",
+            "4000",
+            "4500",
+            "5000",
+            "10000"});
+            this.numberOfTimeStepsComboBox.Location = new System.Drawing.Point(150, 231);
+            this.numberOfTimeStepsComboBox.Name = "numberOfTimeStepsComboBox";
+            this.numberOfTimeStepsComboBox.Size = new System.Drawing.Size(121, 21);
+            this.numberOfTimeStepsComboBox.TabIndex = 11;
+            // 
+            // numberOfTimeStepsLabel
+            // 
+            this.numberOfTimeStepsLabel.AutoSize = true;
+            this.numberOfTimeStepsLabel.Location = new System.Drawing.Point(7, 239);
+            this.numberOfTimeStepsLabel.Name = "numberOfTimeStepsLabel";
+            this.numberOfTimeStepsLabel.Size = new System.Drawing.Size(70, 13);
+            this.numberOfTimeStepsLabel.TabIndex = 10;
+            this.numberOfTimeStepsLabel.Text = "# Time Steps";
+            // 
+            // negClampVelocityTextBox
+            // 
+            this.negClampVelocityTextBox.Location = new System.Drawing.Point(150, 186);
+            this.negClampVelocityTextBox.Name = "negClampVelocityTextBox";
+            this.negClampVelocityTextBox.Size = new System.Drawing.Size(100, 20);
+            this.negClampVelocityTextBox.TabIndex = 9;
+            // 
+            // posClampVelocityLabel
+            // 
+            this.posClampVelocityLabel.AutoSize = true;
+            this.posClampVelocityLabel.Location = new System.Drawing.Point(7, 151);
+            this.posClampVelocityLabel.Name = "posClampVelocityLabel";
+            this.posClampVelocityLabel.Size = new System.Drawing.Size(127, 13);
+            this.posClampVelocityLabel.TabIndex = 8;
+            this.posClampVelocityLabel.Text = "Particle clamp velocity (+)";
+            // 
+            // posClampVelocityTextBox
+            // 
+            this.posClampVelocityTextBox.Location = new System.Drawing.Point(150, 144);
+            this.posClampVelocityTextBox.Name = "posClampVelocityTextBox";
+            this.posClampVelocityTextBox.Size = new System.Drawing.Size(100, 20);
+            this.posClampVelocityTextBox.TabIndex = 7;
+            // 
+            // negClampVelocityLabel
+            // 
+            this.negClampVelocityLabel.AutoSize = true;
+            this.negClampVelocityLabel.Location = new System.Drawing.Point(7, 193);
+            this.negClampVelocityLabel.Name = "negClampVelocityLabel";
+            this.negClampVelocityLabel.Size = new System.Drawing.Size(124, 13);
+            this.negClampVelocityLabel.TabIndex = 6;
+            this.negClampVelocityLabel.Text = "Particle clamp velocity (-)";
+            // 
+            // numberOfParticlesComboBox
+            // 
+            this.numberOfParticlesComboBox.FormattingEnabled = true;
+            this.numberOfParticlesComboBox.Items.AddRange(new object[] {
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            "35",
+            "40",
+            "45",
+            "50"});
+            this.numberOfParticlesComboBox.Location = new System.Drawing.Point(150, 101);
+            this.numberOfParticlesComboBox.Name = "numberOfParticlesComboBox";
+            this.numberOfParticlesComboBox.Size = new System.Drawing.Size(250, 21);
+            this.numberOfParticlesComboBox.TabIndex = 5;
+            this.numberOfParticlesComboBox.SelectedIndexChanged += new System.EventHandler(this.numberOfParticlesComboBox_SelectedIndexChanged);
+            // 
+            // numberOfParticlesLabel
+            // 
+            this.numberOfParticlesLabel.AutoSize = true;
+            this.numberOfParticlesLabel.Location = new System.Drawing.Point(7, 109);
+            this.numberOfParticlesLabel.Name = "numberOfParticlesLabel";
+            this.numberOfParticlesLabel.Size = new System.Drawing.Size(57, 13);
+            this.numberOfParticlesLabel.TabIndex = 4;
+            this.numberOfParticlesLabel.Text = "# Particles";
+            // 
+            // inputFunctionComboBox
+            // 
+            this.inputFunctionComboBox.AutoCompleteCustomSource.AddRange(new string[] {
+            "3D Rosenberg Function",
+            "10D Rosenberg Function"});
+            this.inputFunctionComboBox.FormattingEnabled = true;
+            this.inputFunctionComboBox.Items.AddRange(new object[] {
+            "3D Rosenberg Function",
+            "10D Rosenberg Function"});
+            this.inputFunctionComboBox.Location = new System.Drawing.Point(150, 65);
+            this.inputFunctionComboBox.Name = "inputFunctionComboBox";
+            this.inputFunctionComboBox.Size = new System.Drawing.Size(250, 21);
+            this.inputFunctionComboBox.TabIndex = 3;
+            // 
+            // orLabel
+            // 
+            this.orLabel.AutoSize = true;
+            this.orLabel.Location = new System.Drawing.Point(150, 40);
+            this.orLabel.Name = "orLabel";
+            this.orLabel.Size = new System.Drawing.Size(97, 13);
+            this.orLabel.TabIndex = 2;
+            this.orLabel.Text = "or select a function";
+            // 
+            // inputFunctionTextBox
+            // 
+            this.inputFunctionTextBox.Location = new System.Drawing.Point(150, 15);
+            this.inputFunctionTextBox.Name = "inputFunctionTextBox";
+            this.inputFunctionTextBox.Size = new System.Drawing.Size(250, 20);
+            this.inputFunctionTextBox.TabIndex = 1;
+            // 
+            // inputFunction
+            // 
+            this.inputFunction.AutoSize = true;
+            this.inputFunction.Location = new System.Drawing.Point(5, 15);
+            this.inputFunction.Name = "inputFunction";
+            this.inputFunction.Size = new System.Drawing.Size(75, 13);
+            this.inputFunction.TabIndex = 0;
+            this.inputFunction.Text = "Input Function";
+            // 
+            // maxVelocityTextBox
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1200, 600);
+            this.Controls.Add(this.PSPanel);
+            this.Controls.Add(this.launchPanel);
+            this.Name = "maxVelocityTextBox";
+            this.Text = "EA Visualization";
+            this.launchPanel.ResumeLayout(false);
+            this.launchPanel.PerformLayout();
+            this.PSPanel.ResumeLayout(false);
+            this.PSPanel.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel launchPanel;
+        private System.Windows.Forms.Button launchGA;
+        private System.Windows.Forms.Button LaunchPS;
+        private System.Windows.Forms.Label EASelectionLabel;
+        private System.Windows.Forms.Panel PSPanel;
+        private System.Windows.Forms.Label inputFunction;
+        private System.Windows.Forms.Label orLabel;
+        private System.Windows.Forms.TextBox inputFunctionTextBox;
+        private System.Windows.Forms.ComboBox inputFunctionComboBox;
+        private System.Windows.Forms.ComboBox numberOfParticlesComboBox;
+        private System.Windows.Forms.Label numberOfParticlesLabel;
+        private System.Windows.Forms.TextBox posClampVelocityTextBox;
+        private System.Windows.Forms.Label negClampVelocityLabel;
+        private System.Windows.Forms.Label posClampVelocityLabel;
+        private System.Windows.Forms.ComboBox numberOfRunsComboBox;
+        private System.Windows.Forms.Label numberOfRunsLabel;
+        private System.Windows.Forms.ComboBox numberOfTimeStepsComboBox;
+        private System.Windows.Forms.Label numberOfTimeStepsLabel;
+        private System.Windows.Forms.TextBox negClampVelocityTextBox;
+    }
+}
+

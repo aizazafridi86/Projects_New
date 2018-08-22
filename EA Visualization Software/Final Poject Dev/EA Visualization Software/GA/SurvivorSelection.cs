@@ -1,0 +1,97 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EA_Visualization_Software.GA
+{
+    public class SurvivorSelection
+    {
+        //method for truncation selection
+        public List<Individual> truncation_selection(List<Individual> ind, List<Offspring>offspring, int pop_size, int offspring_size, int number_genes, string optimization_type, Random random)
+        {
+            List<double> ind_fitness = new List<double>();
+            List<double> offspring_fitness = new List<double>();
+            List<double> sorted_fitness = new List<double>();
+            double fitness =0;
+            bool in_individual;
+
+            //storing individual population fitness values in lists
+            for(int i=0; i<pop_size; i++)
+            {
+                fitness = ind[i].CalculateFitness();
+                ind_fitness.Add(fitness);
+                sorted_fitness.Add(fitness);
+            }
+
+            //storing offspring population fitness values in lists
+            for(int i=0; i<offspring_size; i++)
+            {
+                fitness = offspring[i].CalculateFitness();
+                offspring_fitness.Add(fitness);
+                sorted_fitness.Add(fitness);
+            }
+
+            //sorting fitness values
+            if(optimization_type=="minimize")
+            {
+                sorted_fitness.Sort();
+            }
+            else if(optimization_type=="maximize")
+            {
+                sorted_fitness.Sort();
+                sorted_fitness.Reverse();
+            }
+
+            //copying the best individuals both in individual and offspring population to the next generation
+            for (int i = 0; i < pop_size; i++)
+            {
+                //make in_individual boolean false for next iteration
+                in_individual = false;
+
+                //checking if the fitness values are in the individual population
+                for (int j = 0; j < pop_size; j++)
+                {
+                    //copy the individual to next generation if its in the sorted list
+                    if (sorted_fitness[i] == ind_fitness[j])
+                    {
+                        in_individual = true;
+                        //copying genes 
+                        for (int k = 0; k < number_genes; k++)
+                        {
+                            ind[i].genes[k] = ind[j].genes[k];
+                        }
+                        break;
+                    }
+                }
+
+                //checking if the fitness values are in offspring population only if its not in individual population
+                if (in_individual == false)
+                {
+                    for (int j = 0; j < offspring_size; j++)
+                    {
+                        //copy offspring to next generation if its in sorted list
+                        if (sorted_fitness[i] == offspring_fitness[j])
+                        {
+                            //copying genes
+                            for (int k = 0; k < number_genes; k++)
+                            {
+                                ind[i].genes[k] = offspring[j].genes[k];
+                            }
+                            break;
+                        }
+                    }
+                }
+
+            }//end of outer for
+
+            ind_fitness.Clear();
+            offspring_fitness.Clear();
+            sorted_fitness.Clear();
+                
+            //returning individual population
+            return ind;
+        }
+    }
+}

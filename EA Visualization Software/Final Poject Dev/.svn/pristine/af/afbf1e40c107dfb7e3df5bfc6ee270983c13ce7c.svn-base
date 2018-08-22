@@ -1,0 +1,59 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EA_Visualization_Software.GA
+{
+    public class MatingSelection
+    {
+        //initialize list of offsprings that would store selected offsprings
+        //List<Offspring> offspring;
+
+        //Initialize Random class for random number generation
+        Random random = new Random();
+
+        //method that receives list of individuals and offsprings and returns the selected offsrpings
+        public List<Offspring> tournament_selection(List<Individual> ind,List<Offspring>offspring,int pop_size,int offspring_size, int tournament_size, int number_genes)
+        {
+            int numberOfGenes=number_genes;
+            List<int> selected_ind = new List<int>();
+            List<double> fitness_selected_ind=new List<double>();
+            int final_selected_individual;
+            double min_fitness;
+   
+            //select parents for mating and put them in offspring population that would be later modified by recombination and mutation
+            for (int i = 0; i < offspring_size; i++)
+            {
+                //selecting individuals and calculating their fitness
+                for(int j=0;j<tournament_size;j++)
+                {
+                    selected_ind[j]=random.Next(0,pop_size);
+                    fitness_selected_ind[j]= ind[selected_ind[j]].CalculateFitness();
+                }
+
+                //selecting individual having the best fitness and copying it to the offspring list
+                min_fitness=fitness_selected_ind[0];
+                final_selected_individual=0;
+
+                for(int j=1;j<tournament_size;j++)
+                {
+                    if(fitness_selected_ind[j]<min_fitness)
+                    {
+                        final_selected_individual=j;
+                    }
+                }
+
+                //finally, copying selected individual to offspring list
+                for(int j=0; j<numberOfGenes; j++)
+                {
+                    offspring[i].genes[j]=ind[final_selected_individual].genes[j];
+                }
+
+            }
+            //return list of offsprings
+            return offspring;
+        }
+    }
+}

@@ -1,0 +1,743 @@
+﻿namespace EA_Visualization_Software
+{
+    partial class EAVisualization
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title7 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title8 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title9 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title10 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title11 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title12 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            this.launchPanel = new System.Windows.Forms.Panel();
+            this.launchGA = new System.Windows.Forms.Button();
+            this.LaunchPS = new System.Windows.Forms.Button();
+            this.EASelectionLabel = new System.Windows.Forms.Label();
+            this.PSPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.showDataButton = new System.Windows.Forms.Button();
+            this.runPSOButton = new System.Windows.Forms.Button();
+            this.dispersionPlot = new System.Windows.Forms.Button();
+            this.averageFitnessPlot = new System.Windows.Forms.Button();
+            this.bestFitnessPlot = new System.Windows.Forms.Button();
+            this.maximizeRadioButton = new System.Windows.Forms.RadioButton();
+            this.minimizeRadioButton = new System.Windows.Forms.RadioButton();
+            this.updateRuleComboBox = new System.Windows.Forms.ComboBox();
+            this.updateRuleLabel = new System.Windows.Forms.Label();
+            this.higherRangeTextBox = new System.Windows.Forms.TextBox();
+            this.higherRangeLabel = new System.Windows.Forms.Label();
+            this.lowerRangeTextBox = new System.Windows.Forms.TextBox();
+            this.lowerRangeLabel = new System.Windows.Forms.Label();
+            this.numberOfRunsComboBox = new System.Windows.Forms.ComboBox();
+            this.numberOfRunsLabel = new System.Windows.Forms.Label();
+            this.numberOfTimeStepsComboBox = new System.Windows.Forms.ComboBox();
+            this.numberOfTimeStepsLabel = new System.Windows.Forms.Label();
+            this.negClampVelocityTextBox = new System.Windows.Forms.TextBox();
+            this.posClampVelocityLabel = new System.Windows.Forms.Label();
+            this.posClampVelocityTextBox = new System.Windows.Forms.TextBox();
+            this.negClampVelocityLabel = new System.Windows.Forms.Label();
+            this.numberOfParticlesComboBox = new System.Windows.Forms.ComboBox();
+            this.numberOfParticlesLabel = new System.Windows.Forms.Label();
+            this.inputFunctionTextBox = new System.Windows.Forms.TextBox();
+            this.inputFunction = new System.Windows.Forms.Label();
+            this.outputPanel = new System.Windows.Forms.Panel();
+            this.plotPanel = new System.Windows.Forms.Panel();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.outputDataLabel = new System.Windows.Forms.Label();
+            this.outputDispersionLabel = new System.Windows.Forms.Label();
+            this.outputAverageFitnessLabel = new System.Windows.Forms.Label();
+            this.outputDispersion = new System.Windows.Forms.RichTextBox();
+            this.outputAverageFitness = new System.Windows.Forms.RichTextBox();
+            this.outputBestLabel = new System.Windows.Forms.Label();
+            this.OutputbestFitness = new System.Windows.Forms.RichTextBox();
+            this.resetButton = new System.Windows.Forms.Button();
+            this.launchPanel.SuspendLayout();
+            this.PSPanel.SuspendLayout();
+            this.outputPanel.SuspendLayout();
+            this.plotPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // launchPanel
+            // 
+            this.launchPanel.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.launchPanel.Controls.Add(this.launchGA);
+            this.launchPanel.Controls.Add(this.LaunchPS);
+            this.launchPanel.Controls.Add(this.EASelectionLabel);
+            this.launchPanel.Location = new System.Drawing.Point(400, 200);
+            this.launchPanel.Name = "launchPanel";
+            this.launchPanel.Size = new System.Drawing.Size(400, 200);
+            this.launchPanel.TabIndex = 0;
+            // 
+            // launchGA
+            // 
+            this.launchGA.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.launchGA.Location = new System.Drawing.Point(54, 132);
+            this.launchGA.Name = "launchGA";
+            this.launchGA.Size = new System.Drawing.Size(250, 30);
+            this.launchGA.TabIndex = 1;
+            this.launchGA.Text = "Genetic Algorithm";
+            this.launchGA.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.launchGA.UseVisualStyleBackColor = true;
+            // 
+            // LaunchPS
+            // 
+            this.LaunchPS.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LaunchPS.Location = new System.Drawing.Point(54, 88);
+            this.LaunchPS.Name = "LaunchPS";
+            this.LaunchPS.Size = new System.Drawing.Size(250, 30);
+            this.LaunchPS.TabIndex = 1;
+            this.LaunchPS.Text = "Particle Swarm Optimization Algorithm";
+            this.LaunchPS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LaunchPS.UseVisualStyleBackColor = true;
+            this.LaunchPS.Click += new System.EventHandler(this.LaunchPS_Click);
+            // 
+            // EASelectionLabel
+            // 
+            this.EASelectionLabel.AutoSize = true;
+            this.EASelectionLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EASelectionLabel.Location = new System.Drawing.Point(51, 26);
+            this.EASelectionLabel.Name = "EASelectionLabel";
+            this.EASelectionLabel.Size = new System.Drawing.Size(327, 18);
+            this.EASelectionLabel.TabIndex = 0;
+            this.EASelectionLabel.Text = "Please select one of the following options";
+            // 
+            // PSPanel
+            // 
+            this.PSPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PSPanel.Controls.Add(this.resetButton);
+            this.PSPanel.Controls.Add(this.label1);
+            this.PSPanel.Controls.Add(this.showDataButton);
+            this.PSPanel.Controls.Add(this.runPSOButton);
+            this.PSPanel.Controls.Add(this.dispersionPlot);
+            this.PSPanel.Controls.Add(this.averageFitnessPlot);
+            this.PSPanel.Controls.Add(this.bestFitnessPlot);
+            this.PSPanel.Controls.Add(this.maximizeRadioButton);
+            this.PSPanel.Controls.Add(this.minimizeRadioButton);
+            this.PSPanel.Controls.Add(this.updateRuleComboBox);
+            this.PSPanel.Controls.Add(this.updateRuleLabel);
+            this.PSPanel.Controls.Add(this.higherRangeTextBox);
+            this.PSPanel.Controls.Add(this.higherRangeLabel);
+            this.PSPanel.Controls.Add(this.lowerRangeTextBox);
+            this.PSPanel.Controls.Add(this.lowerRangeLabel);
+            this.PSPanel.Controls.Add(this.numberOfRunsComboBox);
+            this.PSPanel.Controls.Add(this.numberOfRunsLabel);
+            this.PSPanel.Controls.Add(this.numberOfTimeStepsComboBox);
+            this.PSPanel.Controls.Add(this.numberOfTimeStepsLabel);
+            this.PSPanel.Controls.Add(this.negClampVelocityTextBox);
+            this.PSPanel.Controls.Add(this.posClampVelocityLabel);
+            this.PSPanel.Controls.Add(this.posClampVelocityTextBox);
+            this.PSPanel.Controls.Add(this.negClampVelocityLabel);
+            this.PSPanel.Controls.Add(this.numberOfParticlesComboBox);
+            this.PSPanel.Controls.Add(this.numberOfParticlesLabel);
+            this.PSPanel.Controls.Add(this.inputFunctionTextBox);
+            this.PSPanel.Controls.Add(this.inputFunction);
+            this.PSPanel.Location = new System.Drawing.Point(13, 13);
+            this.PSPanel.Name = "PSPanel";
+            this.PSPanel.Size = new System.Drawing.Size(536, 643);
+            this.PSPanel.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(421, 523);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 14);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Plotting Options";
+            // 
+            // showDataButton
+            // 
+            this.showDataButton.Location = new System.Drawing.Point(8, 609);
+            this.showDataButton.Name = "showDataButton";
+            this.showDataButton.Size = new System.Drawing.Size(164, 23);
+            this.showDataButton.TabIndex = 26;
+            this.showDataButton.Text = "Show Data";
+            this.showDataButton.UseVisualStyleBackColor = true;
+            this.showDataButton.Click += new System.EventHandler(this.showDataButton_Click);
+            // 
+            // runPSOButton
+            // 
+            this.runPSOButton.Location = new System.Drawing.Point(265, 485);
+            this.runPSOButton.Name = "runPSOButton";
+            this.runPSOButton.Size = new System.Drawing.Size(250, 23);
+            this.runPSOButton.TabIndex = 20;
+            this.runPSOButton.Text = "Run PSO Algorithm";
+            this.runPSOButton.UseVisualStyleBackColor = true;
+            this.runPSOButton.Click += new System.EventHandler(this.runPSOButton_Click);
+            // 
+            // dispersionPlot
+            // 
+            this.dispersionPlot.Location = new System.Drawing.Point(418, 609);
+            this.dispersionPlot.Name = "dispersionPlot";
+            this.dispersionPlot.Size = new System.Drawing.Size(96, 23);
+            this.dispersionPlot.TabIndex = 25;
+            this.dispersionPlot.Text = "Dispersion";
+            this.dispersionPlot.UseVisualStyleBackColor = true;
+            this.dispersionPlot.Click += new System.EventHandler(this.dispersionPlot_Click);
+            // 
+            // averageFitnessPlot
+            // 
+            this.averageFitnessPlot.Location = new System.Drawing.Point(418, 580);
+            this.averageFitnessPlot.Name = "averageFitnessPlot";
+            this.averageFitnessPlot.Size = new System.Drawing.Size(97, 23);
+            this.averageFitnessPlot.TabIndex = 24;
+            this.averageFitnessPlot.Text = "Average Fitness";
+            this.averageFitnessPlot.UseVisualStyleBackColor = true;
+            this.averageFitnessPlot.Click += new System.EventHandler(this.averageFitnessPlot_Click);
+            // 
+            // bestFitnessPlot
+            // 
+            this.bestFitnessPlot.Location = new System.Drawing.Point(418, 551);
+            this.bestFitnessPlot.Name = "bestFitnessPlot";
+            this.bestFitnessPlot.Size = new System.Drawing.Size(97, 23);
+            this.bestFitnessPlot.TabIndex = 23;
+            this.bestFitnessPlot.Text = "Best Fitness";
+            this.bestFitnessPlot.UseVisualStyleBackColor = true;
+            this.bestFitnessPlot.Click += new System.EventHandler(this.bestFitnessPlot_Click);
+            // 
+            // maximizeRadioButton
+            // 
+            this.maximizeRadioButton.AutoSize = true;
+            this.maximizeRadioButton.Location = new System.Drawing.Point(335, 65);
+            this.maximizeRadioButton.Name = "maximizeRadioButton";
+            this.maximizeRadioButton.Size = new System.Drawing.Size(68, 17);
+            this.maximizeRadioButton.TabIndex = 22;
+            this.maximizeRadioButton.Text = "Maximize";
+            this.maximizeRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // minimizeRadioButton
+            // 
+            this.minimizeRadioButton.AutoSize = true;
+            this.minimizeRadioButton.Checked = true;
+            this.minimizeRadioButton.Location = new System.Drawing.Point(250, 65);
+            this.minimizeRadioButton.Name = "minimizeRadioButton";
+            this.minimizeRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.minimizeRadioButton.TabIndex = 21;
+            this.minimizeRadioButton.TabStop = true;
+            this.minimizeRadioButton.Text = "Minimize";
+            this.minimizeRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // updateRuleComboBox
+            // 
+            this.updateRuleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.updateRuleComboBox.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateRuleComboBox.FormattingEnabled = true;
+            this.updateRuleComboBox.Items.AddRange(new object[] {
+            "Linear Decreasing",
+            "Linear Increasing",
+            "Constriction Coefficient"});
+            this.updateRuleComboBox.Location = new System.Drawing.Point(250, 195);
+            this.updateRuleComboBox.Name = "updateRuleComboBox";
+            this.updateRuleComboBox.Size = new System.Drawing.Size(250, 26);
+            this.updateRuleComboBox.TabIndex = 19;
+            // 
+            // updateRuleLabel
+            // 
+            this.updateRuleLabel.AutoSize = true;
+            this.updateRuleLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateRuleLabel.Location = new System.Drawing.Point(5, 195);
+            this.updateRuleLabel.Name = "updateRuleLabel";
+            this.updateRuleLabel.Size = new System.Drawing.Size(171, 18);
+            this.updateRuleLabel.TabIndex = 18;
+            this.updateRuleLabel.Text = "Velocity Update Rule";
+            // 
+            // higherRangeTextBox
+            // 
+            this.higherRangeTextBox.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.higherRangeTextBox.Location = new System.Drawing.Point(250, 155);
+            this.higherRangeTextBox.Name = "higherRangeTextBox";
+            this.higherRangeTextBox.Size = new System.Drawing.Size(80, 26);
+            this.higherRangeTextBox.TabIndex = 17;
+            // 
+            // higherRangeLabel
+            // 
+            this.higherRangeLabel.AutoSize = true;
+            this.higherRangeLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.higherRangeLabel.Location = new System.Drawing.Point(5, 155);
+            this.higherRangeLabel.Name = "higherRangeLabel";
+            this.higherRangeLabel.Size = new System.Drawing.Size(182, 18);
+            this.higherRangeLabel.TabIndex = 16;
+            this.higherRangeLabel.Text = "Function Higher Range";
+            // 
+            // lowerRangeTextBox
+            // 
+            this.lowerRangeTextBox.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lowerRangeTextBox.Location = new System.Drawing.Point(250, 115);
+            this.lowerRangeTextBox.Name = "lowerRangeTextBox";
+            this.lowerRangeTextBox.Size = new System.Drawing.Size(80, 26);
+            this.lowerRangeTextBox.TabIndex = 15;
+            // 
+            // lowerRangeLabel
+            // 
+            this.lowerRangeLabel.AutoSize = true;
+            this.lowerRangeLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lowerRangeLabel.Location = new System.Drawing.Point(5, 115);
+            this.lowerRangeLabel.Name = "lowerRangeLabel";
+            this.lowerRangeLabel.Size = new System.Drawing.Size(177, 18);
+            this.lowerRangeLabel.TabIndex = 14;
+            this.lowerRangeLabel.Text = "Function Lower Range";
+            // 
+            // numberOfRunsComboBox
+            // 
+            this.numberOfRunsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.numberOfRunsComboBox.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numberOfRunsComboBox.FormattingEnabled = true;
+            this.numberOfRunsComboBox.Items.AddRange(new object[] {
+            "1",
+            "5",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "25",
+            "30",
+            "50"});
+            this.numberOfRunsComboBox.Location = new System.Drawing.Point(250, 395);
+            this.numberOfRunsComboBox.Name = "numberOfRunsComboBox";
+            this.numberOfRunsComboBox.Size = new System.Drawing.Size(80, 26);
+            this.numberOfRunsComboBox.TabIndex = 13;
+            // 
+            // numberOfRunsLabel
+            // 
+            this.numberOfRunsLabel.AutoSize = true;
+            this.numberOfRunsLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numberOfRunsLabel.Location = new System.Drawing.Point(5, 395);
+            this.numberOfRunsLabel.Name = "numberOfRunsLabel";
+            this.numberOfRunsLabel.Size = new System.Drawing.Size(59, 18);
+            this.numberOfRunsLabel.TabIndex = 12;
+            this.numberOfRunsLabel.Text = "# Runs";
+            // 
+            // numberOfTimeStepsComboBox
+            // 
+            this.numberOfTimeStepsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.numberOfTimeStepsComboBox.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numberOfTimeStepsComboBox.FormattingEnabled = true;
+            this.numberOfTimeStepsComboBox.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "100",
+            "200",
+            "500",
+            "1000",
+            "1500",
+            "2000",
+            "2500",
+            "3000",
+            "3500",
+            "4000",
+            "4500",
+            "5000",
+            "10000"});
+            this.numberOfTimeStepsComboBox.Location = new System.Drawing.Point(250, 355);
+            this.numberOfTimeStepsComboBox.Name = "numberOfTimeStepsComboBox";
+            this.numberOfTimeStepsComboBox.Size = new System.Drawing.Size(80, 26);
+            this.numberOfTimeStepsComboBox.TabIndex = 11;
+            // 
+            // numberOfTimeStepsLabel
+            // 
+            this.numberOfTimeStepsLabel.AutoSize = true;
+            this.numberOfTimeStepsLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numberOfTimeStepsLabel.Location = new System.Drawing.Point(5, 355);
+            this.numberOfTimeStepsLabel.Name = "numberOfTimeStepsLabel";
+            this.numberOfTimeStepsLabel.Size = new System.Drawing.Size(104, 18);
+            this.numberOfTimeStepsLabel.TabIndex = 10;
+            this.numberOfTimeStepsLabel.Text = "# Time Steps";
+            // 
+            // negClampVelocityTextBox
+            // 
+            this.negClampVelocityTextBox.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.negClampVelocityTextBox.Location = new System.Drawing.Point(250, 275);
+            this.negClampVelocityTextBox.Name = "negClampVelocityTextBox";
+            this.negClampVelocityTextBox.Size = new System.Drawing.Size(80, 26);
+            this.negClampVelocityTextBox.TabIndex = 9;
+            // 
+            // posClampVelocityLabel
+            // 
+            this.posClampVelocityLabel.AutoSize = true;
+            this.posClampVelocityLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.posClampVelocityLabel.Location = new System.Drawing.Point(5, 235);
+            this.posClampVelocityLabel.Name = "posClampVelocityLabel";
+            this.posClampVelocityLabel.Size = new System.Drawing.Size(206, 18);
+            this.posClampVelocityLabel.TabIndex = 8;
+            this.posClampVelocityLabel.Text = "Particle clamp velocity (+)";
+            // 
+            // posClampVelocityTextBox
+            // 
+            this.posClampVelocityTextBox.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.posClampVelocityTextBox.Location = new System.Drawing.Point(250, 235);
+            this.posClampVelocityTextBox.Name = "posClampVelocityTextBox";
+            this.posClampVelocityTextBox.Size = new System.Drawing.Size(80, 26);
+            this.posClampVelocityTextBox.TabIndex = 7;
+            // 
+            // negClampVelocityLabel
+            // 
+            this.negClampVelocityLabel.AutoSize = true;
+            this.negClampVelocityLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.negClampVelocityLabel.Location = new System.Drawing.Point(5, 275);
+            this.negClampVelocityLabel.Name = "negClampVelocityLabel";
+            this.negClampVelocityLabel.Size = new System.Drawing.Size(201, 18);
+            this.negClampVelocityLabel.TabIndex = 6;
+            this.negClampVelocityLabel.Text = "Particle clamp velocity (-)";
+            // 
+            // numberOfParticlesComboBox
+            // 
+            this.numberOfParticlesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.numberOfParticlesComboBox.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numberOfParticlesComboBox.FormattingEnabled = true;
+            this.numberOfParticlesComboBox.Items.AddRange(new object[] {
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            "35",
+            "40",
+            "45",
+            "50"});
+            this.numberOfParticlesComboBox.Location = new System.Drawing.Point(250, 315);
+            this.numberOfParticlesComboBox.Name = "numberOfParticlesComboBox";
+            this.numberOfParticlesComboBox.Size = new System.Drawing.Size(80, 26);
+            this.numberOfParticlesComboBox.TabIndex = 5;
+            // 
+            // numberOfParticlesLabel
+            // 
+            this.numberOfParticlesLabel.AutoSize = true;
+            this.numberOfParticlesLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numberOfParticlesLabel.Location = new System.Drawing.Point(5, 315);
+            this.numberOfParticlesLabel.Name = "numberOfParticlesLabel";
+            this.numberOfParticlesLabel.Size = new System.Drawing.Size(86, 18);
+            this.numberOfParticlesLabel.TabIndex = 4;
+            this.numberOfParticlesLabel.Text = "# Particles";
+            // 
+            // inputFunctionTextBox
+            // 
+            this.inputFunctionTextBox.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputFunctionTextBox.Location = new System.Drawing.Point(250, 15);
+            this.inputFunctionTextBox.Name = "inputFunctionTextBox";
+            this.inputFunctionTextBox.Size = new System.Drawing.Size(250, 26);
+            this.inputFunctionTextBox.TabIndex = 1;
+            // 
+            // inputFunction
+            // 
+            this.inputFunction.AutoSize = true;
+            this.inputFunction.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputFunction.Location = new System.Drawing.Point(5, 15);
+            this.inputFunction.Name = "inputFunction";
+            this.inputFunction.Size = new System.Drawing.Size(116, 18);
+            this.inputFunction.TabIndex = 0;
+            this.inputFunction.Text = "Input Function";
+            // 
+            // outputPanel
+            // 
+            this.outputPanel.Controls.Add(this.plotPanel);
+            this.outputPanel.Controls.Add(this.outputDataLabel);
+            this.outputPanel.Controls.Add(this.outputDispersionLabel);
+            this.outputPanel.Controls.Add(this.outputAverageFitnessLabel);
+            this.outputPanel.Controls.Add(this.outputDispersion);
+            this.outputPanel.Controls.Add(this.outputAverageFitness);
+            this.outputPanel.Controls.Add(this.outputBestLabel);
+            this.outputPanel.Controls.Add(this.OutputbestFitness);
+            this.outputPanel.Location = new System.Drawing.Point(556, 13);
+            this.outputPanel.Name = "outputPanel";
+            this.outputPanel.Size = new System.Drawing.Size(630, 593);
+            this.outputPanel.TabIndex = 2;
+            // 
+            // plotPanel
+            // 
+            this.plotPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.plotPanel.Controls.Add(this.chart2);
+            this.plotPanel.Controls.Add(this.chart3);
+            this.plotPanel.Controls.Add(this.chart1);
+            this.plotPanel.Location = new System.Drawing.Point(3, 3);
+            this.plotPanel.Name = "plotPanel";
+            this.plotPanel.Size = new System.Drawing.Size(630, 575);
+            this.plotPanel.TabIndex = 7;
+            // 
+            // chart2
+            // 
+            chartArea4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            chartArea4.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart2.Legends.Add(legend4);
+            this.chart2.Location = new System.Drawing.Point(0, 0);
+            this.chart2.Name = "chart2";
+            this.chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
+            series4.BorderColor = System.Drawing.Color.Black;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Color = System.Drawing.Color.Blue;
+            series4.Legend = "Legend1";
+            series4.MarkerSize = 3;
+            series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series4.Name = "Average Fitness";
+            this.chart2.Series.Add(series4);
+            this.chart2.Size = new System.Drawing.Size(630, 575);
+            this.chart2.TabIndex = 1;
+            this.chart2.Text = "Population Average Fitness";
+            title7.Alignment = System.Drawing.ContentAlignment.BottomCenter;
+            title7.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            title7.Name = "x-axis";
+            title7.Text = "Time Step";
+            title8.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
+            title8.Name = "y-axis";
+            title8.Text = "Average Fitness";
+            this.chart2.Titles.Add(title7);
+            this.chart2.Titles.Add(title8);
+            // 
+            // chart3
+            // 
+            chartArea5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            chartArea5.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chart3.Legends.Add(legend5);
+            this.chart3.Location = new System.Drawing.Point(0, 0);
+            this.chart3.Name = "chart3";
+            this.chart3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Color = System.Drawing.Color.Blue;
+            series5.Legend = "Legend1";
+            series5.MarkerSize = 3;
+            series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series5.Name = "Dispersion";
+            this.chart3.Series.Add(series5);
+            this.chart3.Size = new System.Drawing.Size(630, 575);
+            this.chart3.TabIndex = 2;
+            this.chart3.Text = "chart3";
+            title9.Alignment = System.Drawing.ContentAlignment.BottomCenter;
+            title9.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            title9.Name = "x-axis";
+            title9.Text = "Time Step";
+            title10.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
+            title10.Name = "y-axis";
+            title10.Text = "Dispersion";
+            this.chart3.Titles.Add(title9);
+            this.chart3.Titles.Add(title10);
+            // 
+            // chart1
+            // 
+            chartArea6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            chartArea6.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.chart1.Legends.Add(legend6);
+            this.chart1.Location = new System.Drawing.Point(0, 0);
+            this.chart1.Name = "chart1";
+            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Color = System.Drawing.Color.Blue;
+            series6.Legend = "Legend1";
+            series6.MarkerSize = 3;
+            series6.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series6.Name = "Best Fitness";
+            this.chart1.Series.Add(series6);
+            this.chart1.Size = new System.Drawing.Size(630, 575);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "Population Best Fitness";
+            title11.Alignment = System.Drawing.ContentAlignment.BottomCenter;
+            title11.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            title11.Name = "x-axis";
+            title11.Text = "Time step";
+            title12.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
+            title12.Name = "y-axis";
+            title12.Text = "Best Fitness";
+            this.chart1.Titles.Add(title11);
+            this.chart1.Titles.Add(title12);
+            // 
+            // outputDataLabel
+            // 
+            this.outputDataLabel.AutoSize = true;
+            this.outputDataLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputDataLabel.Location = new System.Drawing.Point(13, 0);
+            this.outputDataLabel.Name = "outputDataLabel";
+            this.outputDataLabel.Size = new System.Drawing.Size(98, 18);
+            this.outputDataLabel.TabIndex = 6;
+            this.outputDataLabel.Text = "Output Data";
+            // 
+            // outputDispersionLabel
+            // 
+            this.outputDispersionLabel.AutoSize = true;
+            this.outputDispersionLabel.Location = new System.Drawing.Point(434, 40);
+            this.outputDispersionLabel.Name = "outputDispersionLabel";
+            this.outputDispersionLabel.Size = new System.Drawing.Size(164, 13);
+            this.outputDispersionLabel.TabIndex = 5;
+            this.outputDispersionLabel.Text = "Particles dispersion in Time Steps";
+            // 
+            // outputAverageFitnessLabel
+            // 
+            this.outputAverageFitnessLabel.AutoSize = true;
+            this.outputAverageFitnessLabel.Location = new System.Drawing.Point(218, 40);
+            this.outputAverageFitnessLabel.Name = "outputAverageFitnessLabel";
+            this.outputAverageFitnessLabel.Size = new System.Drawing.Size(193, 13);
+            this.outputAverageFitnessLabel.TabIndex = 4;
+            this.outputAverageFitnessLabel.Text = "Particles Average Fitness in Time Steps";
+            // 
+            // outputDispersion
+            // 
+            this.outputDispersion.Location = new System.Drawing.Point(426, 56);
+            this.outputDispersion.Name = "outputDispersion";
+            this.outputDispersion.Size = new System.Drawing.Size(190, 453);
+            this.outputDispersion.TabIndex = 3;
+            this.outputDispersion.Text = "";
+            // 
+            // outputAverageFitness
+            // 
+            this.outputAverageFitness.Location = new System.Drawing.Point(221, 56);
+            this.outputAverageFitness.Name = "outputAverageFitness";
+            this.outputAverageFitness.Size = new System.Drawing.Size(190, 453);
+            this.outputAverageFitness.TabIndex = 2;
+            this.outputAverageFitness.Text = "";
+            // 
+            // outputBestLabel
+            // 
+            this.outputBestLabel.AutoSize = true;
+            this.outputBestLabel.Location = new System.Drawing.Point(25, 40);
+            this.outputBestLabel.Name = "outputBestLabel";
+            this.outputBestLabel.Size = new System.Drawing.Size(169, 13);
+            this.outputBestLabel.TabIndex = 1;
+            this.outputBestLabel.Text = "Best Particle Fitness in Time Steps";
+            // 
+            // OutputbestFitness
+            // 
+            this.OutputbestFitness.Location = new System.Drawing.Point(16, 56);
+            this.OutputbestFitness.Name = "OutputbestFitness";
+            this.OutputbestFitness.Size = new System.Drawing.Size(190, 453);
+            this.OutputbestFitness.TabIndex = 0;
+            this.OutputbestFitness.Text = "";
+            // 
+            // resetButton
+            // 
+            this.resetButton.Location = new System.Drawing.Point(8, 580);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(164, 23);
+            this.resetButton.TabIndex = 28;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            // 
+            // EAVisualization
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1334, 662);
+            this.Controls.Add(this.outputPanel);
+            this.Controls.Add(this.PSPanel);
+            this.Controls.Add(this.launchPanel);
+            this.Location = new System.Drawing.Point(10, 10);
+            this.Name = "EAVisualization";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "EA Visualization";
+            this.launchPanel.ResumeLayout(false);
+            this.launchPanel.PerformLayout();
+            this.PSPanel.ResumeLayout(false);
+            this.PSPanel.PerformLayout();
+            this.outputPanel.ResumeLayout(false);
+            this.outputPanel.PerformLayout();
+            this.plotPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel launchPanel;
+        private System.Windows.Forms.Button launchGA;
+        private System.Windows.Forms.Button LaunchPS;
+        private System.Windows.Forms.Label EASelectionLabel;
+        private System.Windows.Forms.Panel PSPanel;
+        private System.Windows.Forms.Label inputFunction;
+        private System.Windows.Forms.TextBox inputFunctionTextBox;
+        private System.Windows.Forms.ComboBox numberOfParticlesComboBox;
+        private System.Windows.Forms.Label numberOfParticlesLabel;
+        private System.Windows.Forms.TextBox posClampVelocityTextBox;
+        private System.Windows.Forms.Label negClampVelocityLabel;
+        private System.Windows.Forms.Label posClampVelocityLabel;
+        private System.Windows.Forms.ComboBox numberOfRunsComboBox;
+        private System.Windows.Forms.Label numberOfRunsLabel;
+        private System.Windows.Forms.ComboBox numberOfTimeStepsComboBox;
+        private System.Windows.Forms.Label numberOfTimeStepsLabel;
+        private System.Windows.Forms.TextBox negClampVelocityTextBox;
+        private System.Windows.Forms.ComboBox updateRuleComboBox;
+        private System.Windows.Forms.Label updateRuleLabel;
+        private System.Windows.Forms.TextBox higherRangeTextBox;
+        private System.Windows.Forms.Label higherRangeLabel;
+        private System.Windows.Forms.TextBox lowerRangeTextBox;
+        private System.Windows.Forms.Label lowerRangeLabel;
+        private System.Windows.Forms.Button runPSOButton;
+        private System.Windows.Forms.RadioButton maximizeRadioButton;
+        private System.Windows.Forms.RadioButton minimizeRadioButton;
+        private System.Windows.Forms.Panel outputPanel;
+        private System.Windows.Forms.RichTextBox OutputbestFitness;
+        private System.Windows.Forms.Label outputDispersionLabel;
+        private System.Windows.Forms.Label outputAverageFitnessLabel;
+        private System.Windows.Forms.RichTextBox outputDispersion;
+        private System.Windows.Forms.RichTextBox outputAverageFitness;
+        private System.Windows.Forms.Label outputBestLabel;
+        private System.Windows.Forms.Label outputDataLabel;
+        private System.Windows.Forms.Button averageFitnessPlot;
+        private System.Windows.Forms.Button dispersionPlot;
+        private System.Windows.Forms.Button bestFitnessPlot;
+        private System.Windows.Forms.Panel plotPanel;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Button showDataButton;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button resetButton;
+    }
+}
+

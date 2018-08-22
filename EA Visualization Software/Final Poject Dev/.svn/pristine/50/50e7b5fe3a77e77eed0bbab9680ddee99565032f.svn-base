@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EA_Visualization_Software.GA
+{
+    public class Mutation
+    {
+        public double generated_number;
+
+        //method for performing gaussian mutation
+        public List<Offspring> gaussian_mutaion(List<Offspring> offspring, int offspring_size, double mutation_rate, int number_genes, Random random, MathNet.Numerics.Distributions.Normal normalDist)
+        {
+            for(int i=0; i<offspring_size; i++)
+            {
+                for (int j = 0; j < number_genes; j++)
+                {
+                    this.generated_number = random.NextDouble();
+
+                    //perform mutation if generated number is less than or equal to mutation rate
+                    if (this.generated_number <= mutation_rate)
+                    {
+                        //replace it with random.nextGaussian
+                        offspring[i].genes[j] = offspring[i].genes[j] + normalDist.Sample();
+                    }
+                }
+            }
+
+            return offspring;
+        }//end of method
+    }
+}

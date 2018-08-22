@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using EA_Visualization_Software.Common;
+
+namespace EA_Visualization_Software.PSO_Algorithm
+{
+    public class PSController
+    {
+
+        //Initializing Variables
+        string inputFunction;
+        int lowerRange;
+        int higherRange;
+        string updateRule;
+        int posClampVelocity;
+        int negClampVelocity;
+        int numberOfParticles;
+        int numberOfTimeSteps;
+        int numberOfRuns;
+        string optimizationType;
+
+
+        //This method set values of all variables that are passed by the GUI
+        public void Initialize(string inputFunction,int lowerRange,int higherRange,string updateRule,int posClampVelocity,int negClampVelocity,int numberOfParticles,int numberOfTimeSteps,int numberOfRuns, string optimizationType)
+        {
+            this.inputFunction = inputFunction;
+            this.lowerRange = lowerRange;
+            this.higherRange = higherRange;
+            this.updateRule = updateRule;
+            this.posClampVelocity = posClampVelocity;
+            this.negClampVelocity = negClampVelocity;
+            this.numberOfParticles = numberOfParticles;
+            this.numberOfTimeSteps = numberOfTimeSteps;
+            this.numberOfRuns = numberOfRuns;
+            this.optimizationType = optimizationType;
+
+        }
+
+        //Running PS Algorithm
+        public void RunPSAlgorithm()
+        {    
+            //Initializing list of particles
+            List<Particle> particle = new List<Particle>();
+
+            //creating particles and initializing their variables
+            for(int i=0; i<this.numberOfParticles; i++)
+            {
+                particle.Add(new Particle(this.inputFunction, this.lowerRange, this.higherRange, this.posClampVelocity, this.negClampVelocity, this.numberOfTimeSteps));
+            }
+
+            //for debugging
+            for(int i=0; i<this.numberOfParticles ; i++)
+            {
+                System.Diagnostics.Debug.WriteLine(particle[i].inputFunctionForEvaluation);
+            }
+ 
+        }
+    }
+}

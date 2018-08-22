@@ -1,0 +1,83 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using EA_Visualization_Software.Common;
+
+namespace EA_Visualization_Software.GA
+{
+    public class GAController
+    {
+        //initializing global variables
+        public string input_function;
+        public int lower_range;
+        public int higher_range;
+        public int pop_size;
+        public string selection_method;
+        public int tournament_size;
+        public string recombination_type;
+        public int crossover_points;
+        public double crossover_rate;
+        public string mutation_type;
+        public double mutation_rate;
+        public int number_generations;
+        public int number_runs;
+
+        public List<string> uniqueGenesFound = new List<string>();
+        public int number_genes;
+
+        //creating instance of output class
+        List<Output> output = new List<Output>();
+
+        //creating instance of dispersion class
+        Dispersion disp = new Dispersion();
+        
+        //setting all global variables values
+        public void Initialize(string input_f,int l_range,int h_range,int pop_size,string sel_meth,int tour_size,string recom_type,int cross_p,double cross_rate,string mutation_type, double mutation_rate,List<string> uniqueGenesFound,int number_genes,int gen, int runs)
+        {
+            this.input_function = input_f;
+            this.lower_range = l_range;
+            this.higher_range = h_range;
+            this.pop_size = pop_size;
+            this.selection_method = sel_meth;
+            this.tournament_size = tour_size;
+            this.recombination_type = recom_type;
+            this.crossover_points = cross_p;
+            this.crossover_rate = cross_rate;
+            this.mutation_type = mutation_type;
+            this.mutation_rate = mutation_rate;
+            this.uniqueGenesFound = uniqueGenesFound;
+            this.number_genes = number_genes;
+            this.number_generations = gen;
+            this.number_runs = runs;
+
+        }
+
+        //method that runs GA Algorithm
+        public List<Output> RunGA()
+        {
+            //initializing list of individuals
+            List<Individual> ind = new List<Individual>();
+
+            //clear list of individuals
+            ind.Clear();
+
+            //initializing list of individuals
+            for(int i=0; i<pop_size; i++)
+            {
+                //initialize individuals here
+            }
+
+            
+
+
+
+            //returning output class
+            return this.output;
+
+               
+
+        }
+    }
+}

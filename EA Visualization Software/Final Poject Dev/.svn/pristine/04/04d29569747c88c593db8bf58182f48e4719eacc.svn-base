@@ -1,0 +1,238 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Diagnostics;
+using EA_Visualization_Software.PSO_Algorithm;
+using EA_Visualization_Software.Common;
+
+namespace EA_Visualization_Software
+{
+    public partial class EAVisualization : Form
+    {
+        //public Output output;
+        public List<Output> output;
+        public int numberOfTimeSteps;
+        public int numberOfRuns;
+
+        //dictionaries that stores average of bestFitness,averageFitness and dispersion of all runs for each timestep
+        Dictionary<int, double> bestFitness_Average = new Dictionary<int, double>();
+        Dictionary<int, double> averageFitness_Average = new Dictionary<int, double>();
+        Dictionary<int, double> dispersion_Average = new Dictionary<int, double>();
+        public EAVisualization()
+        {
+            InitializeComponent();
+            this.showLaunchPanel();
+        }
+
+        //Launching PS Panel for the user to enter values for Particle Swarm optimization Algorithm
+        private void LaunchPS_Click(object sender, EventArgs e)
+        {
+            //showing PS Panel
+            this.showPSPanel();
+        }
+
+        //Launching Particle Swarm Optimization Algorithm
+        private void runPSOButton_Click(object sender, EventArgs e)
+        {
+            //getting all user input values and storing them in local variables
+            string inputFunction = this.inputFunctionTextBox.Text.ToString();
+            int lowerRange = Convert.ToInt32(this.lowerRangeTextBox.Text);
+            int higherRange = Convert.ToInt32(this.higherRangeTextBox.Text);
+            string updateRule = this.updateRuleComboBox.Items[this.updateRuleComboBox.SelectedIndex].ToString();
+            int posClampVelocity = Convert.ToInt32(this.posClampVelocityTextBox.Text);
+            int negClampVelocity = Convert.ToInt32(this.negClampVelocityTextBox.Text);
+            int numberOfParticles = Convert.ToInt32(this.numberOfParticlesComboBox.Items[this.numberOfParticlesComboBox.SelectedIndex]);
+            int numberOfTimeSteps = Convert.ToInt32(this.numberOfTimeStepsComboBox.Items[this.numberOfTimeStepsComboBox.SelectedIndex]);
+            int numberOfRuns = Convert.ToInt32(this.numberOfRunsComboBox.Items[this.numberOfRunsComboBox.SelectedIndex]);
+            string optimizationType;
+
+            this.numberOfTimeSteps = numberOfTimeSteps;
+            this.numberOfRuns = numberOfRuns;
+
+            if(this.minimizeRadioButton.Checked)
+            {
+                optimizationType = this.minimizeRadioButton.Text.ToString();
+            }
+
+            else
+            {
+                optimizationType = this.maximizeRadioButton.Text.ToString();
+            }
+
+            //Creating Instance of PS Controller
+            PSController controller = new PSController();
+
+            //passing variable values to Controller
+            controller.Initialize(inputFunction, lowerRange, higherRange, updateRule, posClampVelocity, negClampVelocity, numberOfParticles, numberOfTimeSteps, numberOfRuns, optimizationType);
+
+            //Running PSO Algorithm
+            this.output = controller.RunPSAlgorithm();
+
+            //calculating average of each timeStep of all runs
+            this.CalculateAverage();
+
+            //appending data to text boxes
+            this.ShowDataInTextBoxes();
+
+            //method that plot charts
+            this.PlotCharts();
+
+        }
+
+        //method that calcualtes the average of bestFitness,averageFitness and dispersion in each time step for all runs
+        public void CalculateAverage()
+        {
+
+            //calculating average of best fitness, average fitness and dispersion, storing the values in dictionaries and showing it in 
+            //text box in GUI
+            for (int timeStep = 1; timeStep <= this.numberOfTimeSteps; timeStep++)
+            {
+                //variables for calculating average
+                double best = 0;
+                double average = 0;
+                double disp = 0;
+
+                //calculating average
+                for (int run = 0; run < this.numberOfRuns; run++)
+                {
+                    best = best + this.output[run].bestFitness[timeStep];
+                    average = average + this.output[run].averageFitness[timeStep];
+                    disp = disp + this.output[run].dispersion[timeStep];
+                }
+                best = best / this.numberOfRuns;
+                average = average / this.numberOfRuns;
+                disp = disp / this.numberOfRuns;
+
+                //adding values to dictionaries
+                this.bestFitness_Average.Add(timeStep, best);
+                this.averageFitness_Average.Add(timeStep, average);
+                this.dispersion_Average.Add(timeStep, disp);
+            }
+        }
+
+       //method that appends data to the textboxes
+       public void ShowDataInTextBoxes()
+       {
+            
+           for(int timeStep=1; timeStep<=this.numberOfTimeSteps; timeStep++)
+           {
+              OutputbestFitness.AppendText(timeStep.ToString() + ".\t");
+              OutputbestFitness.AppendText(this.bestFitness_Average[timeStep].ToString());
+              OutputbestFitness.AppendText("\n");
+
+              outputAverageFitness.AppendText(timeStep.ToString() + ".\t");
+              outputAverageFitness.AppendText(this.averageFitness_Average[timeStep].ToString());
+              outputAverageFitness.AppendText("\n");
+
+              outputDispersion.AppendText(timeStep.ToString() + ".\t");
+              outputDispersion.AppendText(this.dispersion_Average[timeStep].ToString());
+              outputDispersion.AppendText("\n");
+           }
+
+        }
+
+        public void PlotCharts()
+       {
+           //plotting best individual fitness in each time step
+           for (int timeStep = 1; timeStep <= this.numberOfTimeSteps; timeStep++)
+           {
+
+               chart1.Series["Series1"].Points.AddXY(Convert.ToDouble(timeStep), this.bestFitness_Average[timeStep].ToString());
+           }
+
+           //plotting population average fitness in each time step
+           for (int timeStep = 1; timeStep <= this.numberOfTimeSteps; timeStep++)
+           {
+
+               chart2.Series["Series1"].Points.AddXY(Convert.ToDouble(timeStep), this.averageFitness_Average[timeStep].ToString());
+           }
+
+           //plotting population dispersion in each time step
+           for (int timeStep = 1; timeStep <= this.numberOfTimeSteps; timeStep++)
+           {
+
+               chart3.Series["Series1"].Points.AddXY(Convert.ToDouble(timeStep), this.dispersion_Average[timeStep].ToString());
+           }
+
+       }
+
+        //method that shows best fitness plot
+        private void bestFitnessPlot_Click(object sender, EventArgs e)
+        {
+            this.plotPanel.Show();
+            chart1.Show();
+            chart2.Hide();
+            chart3.Hide();
+        }
+
+        //method that shows population average fitness plot
+        private void averageFitnessPlot_Click(object sender, EventArgs e)
+        {
+            this.plotPanel.Show();
+            chart2.Show();
+            chart1.Hide();
+            chart3.Hide();         
+        }
+
+        //method that shows popilation dispersion plot
+        private void dispersionPlot_Click(object sender, EventArgs e)
+        {
+            this.plotPanel.Show();
+            chart3.Show();
+            chart1.Hide();
+            chart2.Hide();                          
+        }
+
+        //method that shows the output data
+        private void showDataButton_Click(object sender, EventArgs e)
+        {
+            chart1.Hide();
+            chart2.Hide();
+            chart3.Hide();
+            this.showPSPanel();
+            //this.ShowDataInTextBoxes();
+        }
+
+        //managing panels
+        public void showPSPanel()
+        {
+            this.PSPanel.Show();
+            this.launchPanel.Hide();
+            this.outputPanel.Show();
+            this.plotPanel.Hide();  
+        }
+
+        public void showLaunchPanel()
+        {
+            this.launchPanel.Show();
+            this.PSPanel.Hide();
+            this.outputPanel.Hide();
+            this.plotPanel.Hide();
+           
+        }
+
+        public void showPlotPanel()
+        {
+            
+            this.PSPanel.Show();
+            this.launchPanel.Hide();
+            this.outputPanel.Hide();
+            this.plotPanel.Show();
+    
+
+        }
+
+        
+
+        
+
+     
+
+    }
+}

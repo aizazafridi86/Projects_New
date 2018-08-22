@@ -1,0 +1,236 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+//using NCalc;
+using EA_Visualization_Software.Common;
+//using Microsoft.JScript;
+//using Microsoft.JScript.Vsa;
+using System.Reflection;
+using System.CodeDom.Compiler;
+
+namespace EA_Visualization_Software.PSO_Algorithm
+{
+    public class Particle
+    {
+        public string inputFunction;
+        public int lowerRange;
+        public int higherRange;
+        public int posClampVelocity;
+        public int negClampVelocity;
+        public int numberOfTimeSteps;
+
+        
+        public List<double> genes = new List<double>();             //list that would store particle numerical genes values
+        public List<string> uniqueGenesFound = new List<string>();  //list that would store unique genes values in input function (type string)
+        public List<double> velocity = new List<double>();          //list that would store particle numerical velocity values
+        public string inputFunctionForEvaluation;                   //string that would contain numerical values of fitness function
+        public List<double> pbest = new List<double>();             //list that would store particle personal best genes positions in all dimensions
+        public double bestFitness;                                  //variable that would store numerical value of particle best fitness 
+        public int numberOfGenes;                                   //variable that would store the numerical value of number of genes
+
+        //Creating instance of ScriptControl class that would be used for evaluating particle fitness 
+        MSScriptControl.ScriptControl sc = new MSScriptControl.ScriptControl();
+       
+        //creating instance of Ramdom class that would be used to generate random numbers
+        Random random = new Random();
+
+        public Particle(string inputFunction,int lowerRange,int higherRange,int posClampVelocity,int negClampVelocity,int numberOfTimeSteps, List<string> uniqueGenesFound)
+        {
+            this.inputFunction = inputFunction;
+            this.lowerRange = lowerRange;
+            this.higherRange = higherRange;
+            this.posClampVelocity = posClampVelocity;
+            this.negClampVelocity = negClampVelocity;
+            this.numberOfTimeSteps = numberOfTimeSteps;
+            this.uniqueGenesFound = uniqueGenesFound;
+            this.numberOfGenes = uniqueGenesFound.Count;
+
+            //Initializing genes values
+            for(int i=0; i<this.numberOfGenes; i++)
+            {
+                double value = this.random.NextDouble() * (this.higherRange - this.lowerRange) + this.lowerRange;
+                this.genes.Add(value);
+                
+            }
+
+            //initializing particle velocity in all dimensions to 0
+            for(int i=0; i<this.numberOfGenes; i++)
+            {
+                this.velocity.Add(0);
+            }
+
+            //initializing pbest list with the initial genes values
+            for(int i=0; i<this.numberOfGenes; i++)
+            {
+                this.pbest.Add(this.genes[i]);
+            }
+
+            //initializing bestFitness
+            this.bestFitness = this.CalculateFitness();
+
+        }
+
+        //Method to calculate fitness of particle
+        public double CalculateFitness()
+        {
+           
+            //replacing genes values in input function to calculate particle fitness, using regular expression
+            /*for (int i = 0; i < this.numberOfGenes; i++)
+            {
+                
+                string pattern = this.uniqueGenesFound[i];
+                string replacement = this.genes[i].ToString();
+                Regex rgx = new Regex(pattern);
+
+                //replacing first gene
+                if (i == 0)
+                {
+                    this.inputFunctionForEvaluation = rgx.Replace(this.inputFunction, replacement);
+                }
+
+                //replacing remaining genes
+                else
+                {
+                    this.inputFunctionForEvaluation = rgx.Replace(this.inputFunctionForEvaluation, replacement);
+                }
+            }
+            */
+
+            //replacing genes values 
+            string replacement = this.inputFunction;
+            //string newFunc;
+
+            for(int i=0; i<this.numberOfGenes ; i++)
+            {
+                if (i == 0)
+                {
+                    this.inputFunctionForEvaluation = replacement.Replace(uniqueGenesFound[i], this.genes[i].ToString());
+                }
+                else
+                {
+                    this.inputFunctionForEvaluation = this.inputFunctionForEvaluation.Replace(uniqueGenesFound[i], this.genes[i].ToString());
+                }
+            }
+            
+            //evaluating fitness
+            //Expression e = new Expression(this.inputFunctionForEvaluation);
+            //var result = e.Evaluate();
+            //double fitness=  Convert.ToDouble(Eval(this.inputFunctionForEvaluation));      
+            //object result = sc.Eval(this.inputFunctionForEvaluation);
+
+            this.sc.Language = "VBScript";
+            object result = this.sc.Eval(this.inputFunctionForEvaluation);
+            double fitness = Convert.ToDouble(result);
+
+            return fitness;
+            
+        }
+
+        //method for calculating personal best values
+        public void Calculate_Pbest()
+        {
+            //calcualting fitness 
+            double fitnessInTimeStep = this.CalculateFitness();
+            
+            //copying genes values to pbest list if new fitness is less than the previous best fitness
+            if(Math.Abs(fitnessInTimeStep) < Math.Abs(this.bestFitness))
+            {
+                this.bestFitness = fitnessInTimeStep;
+
+                for(int i=0; i<this.numberOfGenes; i++)
+                {
+                    this.pbest[i] = this.genes[i];
+                }
+            }
+
+        }
+
+        //method to update linear decreasing velocity
+        public void Update_LinearDecreasingVelocity(Particle gbest, double wt)
+        {
+            int c1 = 2;
+            int c2 = 2;
+            double r1, r2;
+
+            for(int i=0; i<this.numberOfGenes; i++)
+            {
+        
+                r1 = this.random.NextDouble();
+                r2 = this.random.NextDouble();
+
+                this.velocity[i] = this.velocity[i] * wt + ((c1 * r1 * (this.pbest[i] - this.genes[i])) + (c2 * r2 * (gbest.genes[i] - this.genes[i])));
+
+                //clamping positive velocity if it is out of range
+                if(this.velocity[i] > this.posClampVelocity)
+                {
+                    this.velocity[i] = this.posClampVelocity;
+                }
+
+                //clamping negative velocity if it is out of range
+                if(this.velocity[i] < this.negClampVelocity)
+                {
+                    this.velocity[i] = this.negClampVelocity;
+                }
+            }
+        }
+
+        //method to update linear increasing velocity
+        public void Update_LinearIncreasingVelocity(Particle gbest, double wt)
+        {
+            double r1, r2, fi1, fi2;
+
+            for(int i=0;i<this.numberOfGenes;i++)
+            {
+           
+                r1 = random.NextDouble();
+                r2 = random.NextDouble();
+
+                fi1 = 1.5 * r1 + 0.5;
+                fi2 = 1.5 * r2 + 0.5;
+
+                double factor1 = fi1 * (this.pbest[i] - this.genes[i]);
+                double factor2 = fi2 * (gbest.genes[i] - this.genes[i]);
+                double factor3 = this.velocity[i] * wt;
+                this.velocity[i] = factor1 + factor2 + factor3;
+
+                //complete equation for velocity update
+                //this.velocity[i] = this.velocity[i] * wt + (fi1 * (this.pbest[i] - this.genes[i]) + fi2 * (gbest.genes[i] - this.genes[i]));
+
+                //clamping positive velocity if it is out of range
+                if (this.velocity[i] > this.posClampVelocity)
+                {
+                    this.velocity[i] = this.posClampVelocity;
+                }
+
+                //clamping negative velocity if it is out of range
+                if (this.velocity[i] < this.negClampVelocity)
+                {
+                    this.velocity[i] = this.negClampVelocity;
+                }
+
+            }
+        }
+
+        //method to update particle position
+        public void Update_Position()
+        {
+            for(int i=0; i<this.numberOfGenes ; i++)
+            {
+                this.genes[i] = this.genes[i] + this.velocity[i];
+            }
+        }
+
+
+        //method that returns particles fitness
+        public double ReturnFitness()
+        {
+            return this.CalculateFitness();
+        }
+
+     }
+
+  }
+

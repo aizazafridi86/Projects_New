@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+namespace EA_Visualization_Software.PSO_Algorithm
+{
+    public class Particle
+    {
+        public string inputFunction;
+        public int lowerRange;
+        public int higherRange;
+        public int posClampVelocity;
+        public int negClampVelocity;
+        public int numberOfTimeSteps;
+
+        public List<double> genes = new List<double>();
+        public List<string> initialGenes = new List<string>();
+        public List<string> uniqueGenesFound = new List<string>();
+        public int numberOfGenes;
+        public int velocity;
+
+        public string inputFunctionForEvaluation;
+        public double fitness;
+
+        public Particle(string inputFunction,int lowerRange,int higherRange,int posClampVelocity,int negClampVelocity,int numberOfTimeSteps )
+        {
+            this.inputFunction = inputFunction;
+            this.lowerRange = lowerRange;
+            this.higherRange = higherRange;
+            this.posClampVelocity = posClampVelocity;
+            this.negClampVelocity = negClampVelocity;
+            this.numberOfTimeSteps = numberOfTimeSteps;
+
+            Random random= new Random();
+ 
+            //adding all variables to initialGenes list
+            foreach (Match match in Regex.Matches(this.inputFunction,"[a-zA-Z]"))
+            {
+                this.initialGenes.Add(match.Value);
+            }
+
+            //adding only unique variables to genes list
+            for(int i=0; i<initialGenes.Count; i++)
+            {
+                if(!uniqueGenesFound.Contains(initialGenes[i]))
+                {
+                    uniqueGenesFound.Add(initialGenes[i]);
+                }
+            }
+
+            //Finally, initializing genes values
+            for(int i=0; i<uniqueGenesFound.Count; i++)
+            {
+                //double value = random.NextDouble()*(this.higherRange - this.lowerRange) + this.lowerRange;
+                int value = random.Next(this.lowerRange, this.higherRange);
+                genes.Add(value);
+            }
+
+            //copying number of genes to numberOfGenes variable
+            this.numberOfGenes = this.uniqueGenesFound.Count;
+   
+        }
+
+        //Method to calculate fitness of particle
+        public void CalculateFitness()
+        {
+           
+            //replacing genes values in input function to calculate particle fitness
+            for (int i = 0; i < this.numberOfGenes; i++)
+            {
+                string pattern = this.uniqueGenesFound[i];
+                string replacement = this.genes[i].ToString();
+                Regex rgx = new Regex(pattern);
+
+                //replacing first gene
+                if (i == 0)
+                {
+                    this.inputFunctionForEvaluation = rgx.Replace(this.inputFunction, replacement);
+                }
+
+                //replacing remaining genes
+                else
+                {
+                    this.inputFunctionForEvaluation = rgx.Replace(this.inputFunctionForEvaluation, replacement);
+                }
+
+            }
+        }
+
+            public void Return_InputFunctionForEvaluation()
+            {
+                foreach(var g in this.genes)
+                {
+                    System.Diagnostics.Debug.WriteLine(g);
+                }
+                
+               System.Diagnostics.Debug.WriteLine(this.inputFunctionForEvaluation);
+            }
+
+        }
+
+    }
+

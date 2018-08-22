@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EA_Visualization_Software.Common
+{
+    public class RandomNumGenerator
+    {
+
+        //method that generates a random int between a range
+        public int Generate_Int(int lowerRange, int higherRange)
+        {
+            System.Threading.Thread.Sleep(10);
+            Random random = new Random();
+            int number = random.Next(lowerRange, higherRange);
+            return number;
+        }
+
+        //overloaded method that generates a random int
+        public int Generate_Int()
+        {
+            System.Threading.Thread.Sleep(10);
+            Random random = new Random();
+            int number = random.Next();
+            return number;
+        }
+
+        //method that generates a random double between a range
+        public double Generate_Double(int lowerRange, int higherRange)
+        {
+            System.Threading.Thread.Sleep(10);
+            Random random = new Random();
+            double number = random.NextDouble() * (higherRange - lowerRange) + lowerRange;
+            return number;
+        }
+
+        //overloaded function that returns a random double
+        public double Generate_Double()
+        {
+            System.Threading.Thread.Sleep(10);
+            Random random = new Random();
+            double number = random.NextDouble();
+            return number;
+        }
+    }
+}
